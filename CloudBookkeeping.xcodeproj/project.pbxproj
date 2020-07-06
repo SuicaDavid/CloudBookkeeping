@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133083F24B32DFE0080B5C2 /* AppDelegate.swift */; };
+		F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133084124B32DFE0080B5C2 /* SceneDelegate.swift */; };
+		F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F133084324B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld */; };
+		F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133084624B32DFE0080B5C2 /* ContentView.swift */; };
+		F133084924B32DFF0080B5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F133084824B32DFF0080B5C2 /* Assets.xcassets */; };
+		F133084C24B32DFF0080B5C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F133084B24B32DFF0080B5C2 /* Preview Assets.xcassets */; };
+		F133084F24B32DFF0080B5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F133084D24B32DFF0080B5C2 /* LaunchScreen.storyboard */; };
+		F133085A24B32DFF0080B5C2 /* CloudBookkeepingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133085924B32DFF0080B5C2 /* CloudBookkeepingTests.swift */; };
+		F133086524B32DFF0080B5C2 /* CloudBookkeepingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F133085624B32DFF0080B5C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F133083424B32DFE0080B5C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F133083B24B32DFE0080B5C2;
+			remoteInfo = CloudBookkeeping;
+		};
+		F133086124B32DFF0080B5C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F133083424B32DFE0080B5C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F133083B24B32DFE0080B5C2;
+			remoteInfo = CloudBookkeeping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F133083C24B32DFE0080B5C2 /* CloudBookkeeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudBookkeeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F133083F24B32DFE0080B5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F133084124B32DFE0080B5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F133084424B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CloudBookkeeping.xcdatamodel; sourceTree = "<group>"; };
+		F133084624B32DFE0080B5C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F133084824B32DFF0080B5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F133084B24B32DFF0080B5C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F133084E24B32DFF0080B5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F133085024B32DFF0080B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F133085524B32DFF0080B5C2 /* CloudBookkeepingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudBookkeepingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F133085924B32DFF0080B5C2 /* CloudBookkeepingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBookkeepingTests.swift; sourceTree = "<group>"; };
+		F133085B24B32DFF0080B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F133086024B32DFF0080B5C2 /* CloudBookkeepingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudBookkeepingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBookkeepingUITests.swift; sourceTree = "<group>"; };
+		F133086624B32DFF0080B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F133083924B32DFE0080B5C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085224B32DFF0080B5C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085D24B32DFF0080B5C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F133083324B32DFE0080B5C2 = {
+			isa = PBXGroup;
+			children = (
+				F133083E24B32DFE0080B5C2 /* CloudBookkeeping */,
+				F133085824B32DFF0080B5C2 /* CloudBookkeepingTests */,
+				F133086324B32DFF0080B5C2 /* CloudBookkeepingUITests */,
+				F133083D24B32DFE0080B5C2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F133083D24B32DFE0080B5C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F133083C24B32DFE0080B5C2 /* CloudBookkeeping.app */,
+				F133085524B32DFF0080B5C2 /* CloudBookkeepingTests.xctest */,
+				F133086024B32DFF0080B5C2 /* CloudBookkeepingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F133083E24B32DFE0080B5C2 /* CloudBookkeeping */ = {
+			isa = PBXGroup;
+			children = (
+				F133083F24B32DFE0080B5C2 /* AppDelegate.swift */,
+				F133084124B32DFE0080B5C2 /* SceneDelegate.swift */,
+				F133084624B32DFE0080B5C2 /* ContentView.swift */,
+				F133084824B32DFF0080B5C2 /* Assets.xcassets */,
+				F133084D24B32DFF0080B5C2 /* LaunchScreen.storyboard */,
+				F133085024B32DFF0080B5C2 /* Info.plist */,
+				F133084324B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld */,
+				F133084A24B32DFF0080B5C2 /* Preview Content */,
+			);
+			path = CloudBookkeeping;
+			sourceTree = "<group>";
+		};
+		F133084A24B32DFF0080B5C2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F133084B24B32DFF0080B5C2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F133085824B32DFF0080B5C2 /* CloudBookkeepingTests */ = {
+			isa = PBXGroup;
+			children = (
+				F133085924B32DFF0080B5C2 /* CloudBookkeepingTests.swift */,
+				F133085B24B32DFF0080B5C2 /* Info.plist */,
+			);
+			path = CloudBookkeepingTests;
+			sourceTree = "<group>";
+		};
+		F133086324B32DFF0080B5C2 /* CloudBookkeepingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */,
+				F133086624B32DFF0080B5C2 /* Info.plist */,
+			);
+			path = CloudBookkeepingUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F133083B24B32DFE0080B5C2 /* CloudBookkeeping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F133086924B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeeping" */;
+			buildPhases = (
+				F133083824B32DFE0080B5C2 /* Sources */,
+				F133083924B32DFE0080B5C2 /* Frameworks */,
+				F133083A24B32DFE0080B5C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CloudBookkeeping;
+			productName = CloudBookkeeping;
+			productReference = F133083C24B32DFE0080B5C2 /* CloudBookkeeping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F133085424B32DFF0080B5C2 /* CloudBookkeepingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F133086C24B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeepingTests" */;
+			buildPhases = (
+				F133085124B32DFF0080B5C2 /* Sources */,
+				F133085224B32DFF0080B5C2 /* Frameworks */,
+				F133085324B32DFF0080B5C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F133085724B32DFF0080B5C2 /* PBXTargetDependency */,
+			);
+			name = CloudBookkeepingTests;
+			productName = CloudBookkeepingTests;
+			productReference = F133085524B32DFF0080B5C2 /* CloudBookkeepingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F133085F24B32DFF0080B5C2 /* CloudBookkeepingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F133086F24B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeepingUITests" */;
+			buildPhases = (
+				F133085C24B32DFF0080B5C2 /* Sources */,
+				F133085D24B32DFF0080B5C2 /* Frameworks */,
+				F133085E24B32DFF0080B5C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F133086224B32DFF0080B5C2 /* PBXTargetDependency */,
+			);
+			name = CloudBookkeepingUITests;
+			productName = CloudBookkeepingUITests;
+			productReference = F133086024B32DFF0080B5C2 /* CloudBookkeepingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F133083424B32DFE0080B5C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = Suica;
+				TargetAttributes = {
+					F133083B24B32DFE0080B5C2 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					F133085424B32DFF0080B5C2 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = F133083B24B32DFE0080B5C2;
+					};
+					F133085F24B32DFF0080B5C2 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = F133083B24B32DFE0080B5C2;
+					};
+				};
+			};
+			buildConfigurationList = F133083724B32DFE0080B5C2 /* Build configuration list for PBXProject "CloudBookkeeping" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F133083324B32DFE0080B5C2;
+			productRefGroup = F133083D24B32DFE0080B5C2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F133083B24B32DFE0080B5C2 /* CloudBookkeeping */,
+				F133085424B32DFF0080B5C2 /* CloudBookkeepingTests */,
+				F133085F24B32DFF0080B5C2 /* CloudBookkeepingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F133083A24B32DFE0080B5C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F133084F24B32DFF0080B5C2 /* LaunchScreen.storyboard in Resources */,
+				F133084C24B32DFF0080B5C2 /* Preview Assets.xcassets in Resources */,
+				F133084924B32DFF0080B5C2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085324B32DFF0080B5C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085E24B32DFF0080B5C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F133083824B32DFE0080B5C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */,
+				F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */,
+				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
+				F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085124B32DFF0080B5C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F133085A24B32DFF0080B5C2 /* CloudBookkeepingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F133085C24B32DFF0080B5C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F133086524B32DFF0080B5C2 /* CloudBookkeepingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F133085724B32DFF0080B5C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F133083B24B32DFE0080B5C2 /* CloudBookkeeping */;
+			targetProxy = F133085624B32DFF0080B5C2 /* PBXContainerItemProxy */;
+		};
+		F133086224B32DFF0080B5C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F133083B24B32DFE0080B5C2 /* CloudBookkeeping */;
+			targetProxy = F133086124B32DFF0080B5C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F133084D24B32DFF0080B5C2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F133084E24B32DFF0080B5C2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F133086724B32DFF0080B5C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F133086824B32DFF0080B5C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F133086A24B32DFF0080B5C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CloudBookkeeping/Preview Content\"";
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CloudBookkeeping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeeping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F133086B24B32DFF0080B5C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CloudBookkeeping/Preview Content\"";
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CloudBookkeeping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeeping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F133086D24B32DFF0080B5C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				INFOPLIST_FILE = CloudBookkeepingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeepingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CloudBookkeeping.app/CloudBookkeeping";
+			};
+			name = Debug;
+		};
+		F133086E24B32DFF0080B5C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				INFOPLIST_FILE = CloudBookkeepingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeepingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CloudBookkeeping.app/CloudBookkeeping";
+			};
+			name = Release;
+		};
+		F133087024B32DFF0080B5C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				INFOPLIST_FILE = CloudBookkeepingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeepingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CloudBookkeeping;
+			};
+			name = Debug;
+		};
+		F133087124B32DFF0080B5C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32M58UCF8N;
+				INFOPLIST_FILE = CloudBookkeepingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeepingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CloudBookkeeping;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F133083724B32DFE0080B5C2 /* Build configuration list for PBXProject "CloudBookkeeping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F133086724B32DFF0080B5C2 /* Debug */,
+				F133086824B32DFF0080B5C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F133086924B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeeping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F133086A24B32DFF0080B5C2 /* Debug */,
+				F133086B24B32DFF0080B5C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F133086C24B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeepingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F133086D24B32DFF0080B5C2 /* Debug */,
+				F133086E24B32DFF0080B5C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F133086F24B32DFF0080B5C2 /* Build configuration list for PBXNativeTarget "CloudBookkeepingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F133087024B32DFF0080B5C2 /* Debug */,
+				F133087124B32DFF0080B5C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F133084324B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F133084424B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodel */,
+			);
+			currentVersion = F133084424B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodel */;
+			path = CloudBookkeeping.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F133083424B32DFE0080B5C2 /* Project object */;
+}
