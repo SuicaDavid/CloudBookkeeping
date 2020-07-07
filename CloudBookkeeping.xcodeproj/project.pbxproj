@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F114FCD624B4823800F3ACF5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD524B4823800F3ACF5 /* Account.swift */; };
+		F114FCD824B483E600F3ACF5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD724B483E600F3ACF5 /* Category.swift */; };
+		F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD924B4940600F3ACF5 /* HomePage.swift */; };
+		F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCDC24B4E82400F3ACF5 /* AccountData.swift */; };
+		F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCDE24B4F46100F3ACF5 /* Currency.swift */; };
+		F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */; };
 		F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133083F24B32DFE0080B5C2 /* AppDelegate.swift */; };
 		F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133084124B32DFE0080B5C2 /* SceneDelegate.swift */; };
 		F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F133084324B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld */; };
@@ -36,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F114FCD524B4823800F3ACF5 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		F114FCD724B483E600F3ACF5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F114FCD924B4940600F3ACF5 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		F114FCDC24B4E82400F3ACF5 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		F114FCDE24B4F46100F3ACF5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		F133083C24B32DFE0080B5C2 /* CloudBookkeeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudBookkeeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F133083F24B32DFE0080B5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F133084124B32DFE0080B5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +63,7 @@
 		F133086024B32DFF0080B5C2 /* CloudBookkeepingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudBookkeepingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBookkeepingUITests.swift; sourceTree = "<group>"; };
 		F133086624B32DFF0080B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F133087224B32F340080B5C2 /* CloudBookkeeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CloudBookkeeping.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +91,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F114FCD124B47FC500F3ACF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F114FCD424B480D800F3ACF5 /* Pages */,
+				F114FCD324B4808C00F3ACF5 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F114FCD224B4808100F3ACF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F114FCDB24B4E77400F3ACF5 /* Template */,
+				F114FCDC24B4E82400F3ACF5 /* AccountData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F114FCD324B4808C00F3ACF5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F114FCD424B480D800F3ACF5 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				F114FCD924B4940600F3ACF5 /* HomePage.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		F114FCDB24B4E77400F3ACF5 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				F114FCD524B4823800F3ACF5 /* Account.swift */,
+				F114FCD724B483E600F3ACF5 /* Category.swift */,
+				F114FCDE24B4F46100F3ACF5 /* Currency.swift */,
+			);
+			path = Template;
+			sourceTree = "<group>";
+		};
+		F114FCE024B500EC00F3ACF5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		F133083324B32DFE0080B5C2 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +165,13 @@
 		F133083E24B32DFE0080B5C2 /* CloudBookkeeping */ = {
 			isa = PBXGroup;
 			children = (
+				F114FCE024B500EC00F3ACF5 /* Extension */,
+				F114FCD224B4808100F3ACF5 /* Model */,
+				F114FCD124B47FC500F3ACF5 /* View */,
+				F133087224B32F340080B5C2 /* CloudBookkeeping.entitlements */,
+				F133084624B32DFE0080B5C2 /* ContentView.swift */,
 				F133083F24B32DFE0080B5C2 /* AppDelegate.swift */,
 				F133084124B32DFE0080B5C2 /* SceneDelegate.swift */,
-				F133084624B32DFE0080B5C2 /* ContentView.swift */,
 				F133084824B32DFF0080B5C2 /* Assets.xcassets */,
 				F133084D24B32DFF0080B5C2 /* LaunchScreen.storyboard */,
 				F133085024B32DFF0080B5C2 /* Info.plist */,
@@ -270,10 +338,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */,
+				F114FCD624B4823800F3ACF5 /* Account.swift in Sources */,
 				F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */,
 				F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */,
+				F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */,
+				F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */,
 				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
 				F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */,
+				F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */,
+				F114FCD824B483E600F3ACF5 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CloudBookkeeping/CloudBookkeeping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CloudBookkeeping/Preview Content\"";
 				DEVELOPMENT_TEAM = 32M58UCF8N;
@@ -449,6 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CloudBookkeeping/CloudBookkeeping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CloudBookkeeping/Preview Content\"";
 				DEVELOPMENT_TEAM = 32M58UCF8N;
@@ -469,6 +546,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Suica.CloudBookkeeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
