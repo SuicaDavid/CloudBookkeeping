@@ -13,3 +13,14 @@ enum Currency {
     case USD
     case CNY
 }
+
+func getCurrencyUnit(_ currency: Currency) -> String {
+    switch currency {
+    case .GBP:
+        return "£"
+    case .USD:
+        return "$"
+    case .CNY:
+        return "¥"
+    }
+}

@@ -11,6 +11,7 @@ import Foundation
 struct Account {
     var id: UUID = UUID()
     var amount: Double
+    var accountType: AccountType
     var currency: Currency
     var category: Category
     var subcategory: Subcategory

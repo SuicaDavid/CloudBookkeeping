@@ -10,7 +10,8 @@ import SwiftUI
 import UIKit
 
 struct HomePage: View {
-    @ObservedObject private var accountData: AccountData = AccountData()
+    @State var accountData: AccountData
+    @State private var showAddAccountSheet: Bool = false
     var body: some View {
         GeometryReader { geometry in
             return VStack(alignment: .leading) {
@@ -28,7 +29,7 @@ struct HomePage: View {
                 .padding(.vertical)
                 
                 Button(action: {
-                    print("123")
+                    self.showAddAccountSheet = true
                 }, label: {
                     Image(systemName: "plus")
                     Text("Add New Account")
@@ -45,33 +46,19 @@ struct HomePage: View {
                 )
                 
                 AccountList(accounts: self.accountData.accounts)
+                Spacer()
             }
             .padding()
+            .sheet(isPresented: self.$showAddAccountSheet) {
+                AddAccount(accountData: self.accountData)
+            }
         }
     }
 }
 
-struct AccountList: View {
-    var accounts: [Account]
-    
-    var body: some View {
-        VStack {
-            ForEach(accounts, id: \.self.id ) { account in
-                return HStack {
-                    Text(account.category.image)
-                    Text("\(account.category.name) - \(account.subcategory.name)")
-                    Spacer()
-                    // TODO: Localization
-                    Text("\(NumberFormatter.localizedString(from: NSNumber(value: account.amount), number: .currency))") 
-                }
-                .padding()
-            }
-        }
-    }
-}
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        HomePage(accountData: AccountData())
     }
 }

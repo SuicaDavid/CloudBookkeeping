@@ -12,6 +12,7 @@ class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
     @Published var categories: [String: Category] = [String: Category]()
     @Published var selectedCurrency: Currency = .GBP
+    @Published var selectedAccountType: AccountType = .income
     
     init() {
         addCategory(name: "Food", image: "🍟")
@@ -52,7 +53,14 @@ class AccountData: ObservableObject {
     }
     
     func addAccount(amount: Double, category: Category, subcategory: Subcategory, description: String) {
-        let account = Account(amount: amount, currency: selectedCurrency, category: category, subcategory: subcategory, description: description, createdTime: Date(), finalEdditTime: Date())
+        let account = Account(
+            amount: amount,
+            accountType: self.selectedAccountType,
+            currency: self.selectedCurrency,
+            category: category, subcategory: subcategory,
+            description: description,
+            createdTime: Date(),
+            finalEdditTime: Date())
         accounts.append(account)
     }
     
