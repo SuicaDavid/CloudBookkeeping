@@ -8,7 +8,13 @@
 
 import Foundation
 
-enum AccountType {
+enum AccountType: String, Identifiable, CaseIterable {
     case expense
     case income
+    
+    var description: String {
+        rawValue.prefix(1).uppercased() + rawValue.dropFirst()
+    }
+    var id: AccountType { self }
 }
+

@@ -23,9 +23,21 @@ struct AddAccount: View {
     var body: some View {
         VStack {
             HStack {
+                ForEach(AccountType.allCases) { type in
+                    if type == self.accountType {
+                        Text("\(type.description)")
+                            .font(.headline)
+                            .foregroundColor(.red)
+                    } else {
+                        Text("\(type.description)")
+                            .font(.body)
+                    }
+                }
+            }
+            HStack {
                 Text("Amount")
                 Spacer()
-                Text("\(getCurrencyUnit(currency)) \(self.amount)")
+                Text("\(currency.getCurrencyUnit()) \(self.amount)")
             }
             Spacer()
         }

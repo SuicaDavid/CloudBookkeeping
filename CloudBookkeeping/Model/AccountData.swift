@@ -12,7 +12,7 @@ class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
     @Published var categories: [String: Category] = [String: Category]()
     @Published var selectedCurrency: Currency = .GBP
-    @Published var selectedAccountType: AccountType = .income
+    @Published var selectedAccountType: AccountType = .expense
     
     init() {
         addCategory(name: "Food", image: "🍟")
