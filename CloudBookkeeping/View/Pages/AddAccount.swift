@@ -21,16 +21,14 @@ struct AddAccount: View {
     }
     
     var body: some View {
-        VStack {
+        return VStack {
             HStack {
                 ForEach(AccountType.allCases) { type in
-                    if type == self.accountType {
-                        Text("\(type.description)")
-                            .font(.headline)
-                            .foregroundColor(.red)
-                    } else {
-                        Text("\(type.description)")
-                            .font(.body)
+                    Text("\(type.description)")
+                        .font(type == self.accountType ? .headline : .body)
+                        .foregroundColor(type == self.accountType ? .red : .none)
+                        .onTapGesture {
+                            self.accountType = type
                     }
                 }
             }
@@ -38,6 +36,13 @@ struct AddAccount: View {
                 Text("Amount")
                 Spacer()
                 Text("\(currency.getCurrencyUnit()) \(self.amount)")
+            }
+            HStack {
+                ForEach(self.accountData.categories, id: \.self.name) { category in
+                    HStack {
+                        Text("\(category.name) \(category.image)")
+                    }
+                }
             }
             Spacer()
         }

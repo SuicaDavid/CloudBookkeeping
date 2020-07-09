@@ -10,45 +10,55 @@ import SwiftUI
 
 class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
-    @Published var categories: [String: Category] = [String: Category]()
+    @Published var categories: [Category] = [Category]()
     @Published var selectedCurrency: Currency = .GBP
     @Published var selectedAccountType: AccountType = .expense
     
     init() {
         addCategory(name: "Food", image: "🍟")
         addCategory(name: "Dring", image: "🥤")
-        addCategory(name: "Ohter", image: "📃")
-        addAccount(
-            amount: 10,
-            category: categories["Food"] ?? Category(name: "Food", image: "🍟"),
-            subcategory: categories["Food"]?.subcategorys["Delivery"] ??  Subcategory(name: "Delivery"),
-            description: "KFC"
-        )
-        addAccount(
-            amount: 24,
-            category: categories["Drink"] ?? Category(name: "Drink", image: "🥤"),
-            subcategory: categories["Drink"]?.subcategorys["Coffee"] ??  Subcategory(name: "Coffee"),
-            description: "Starbucks"
-        )
+        addCategory(name: "Other", image: "123")
+        edditCategory(name: "Other", image: "📃")
+        addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
+        addSubcategory(categoryName: "Food", subcategoryName: "Take")
+        edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
+        //        addAccount(
+        //            amount: 10,
+        //            category: categories["Food"] ?? Category(name: "Food", image: "🍟"),
+        //            subcategory: categories["Food"]?.subcategorys["Delivery"] ??  Subcategory(name: "Delivery"),
+        //            description: "KFC"
+        //        )
+        //        addAccount(
+        //            amount: 24,
+        //            category: categories["Drink"] ?? Category(name: "Drink", image: "🥤"),
+        //            subcategory: categories["Drink"]?.subcategorys["Coffee"] ??  Subcategory(name: "Coffee"),
+        //            description: "Starbucks"
+        //        )
     }
     
     func addCategory(name: String, image: String) {
-        categories[name] = Category(name: name, image: image)
+        categories.append(Category(name: name, image: image))
     }
     
     func edditCategory(name: String, image: String) {
-        categories[name] = Category(name: name, image: image)
-    }
-    
-    func addSubcategory(categoryName: String, subcategoryName: String) {
-        if var category = categories[categoryName] {
-            category.subcategorys[subcategoryName] = Subcategory(name: subcategoryName)
+        if let index = categories.firstIndex(where: { $0.name == name }) {
+            categories[index] = Category(name: name, image: image)
         }
     }
     
-    func edditSubcategory(categoryName: String, subcategoryName: String) {
-        if var category = categories[categoryName] {
-            category.subcategorys[subcategoryName] = Subcategory(name: subcategoryName)
+    func addSubcategory(categoryName: String, subcategoryName: String) {
+        if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
+            if !categories[categoryIndex].subcategories.contains(where: { $0.name == subcategoryName }) {
+                categories[categoryIndex].subcategories.append(Subcategory(name: subcategoryName))
+            }
+        }
+    }
+    
+    func edditSubcategory(categoryName: String, subcategoryName: String, newSubcategoryName: String) {
+        if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
+            if let subcategoryIndex = categories[categoryIndex].subcategories.firstIndex(where: { $0.name == subcategoryName }) {
+                categories[categoryIndex].subcategories[subcategoryIndex] = Subcategory(name: newSubcategoryName)
+            }
         }
     }
     
@@ -64,8 +74,8 @@ class AccountData: ObservableObject {
         accounts.append(account)
     }
     
-//    func edditAccount(oldAccount: Account) {
-//        let account = Account(amount: oldAccount.amount, currency: oldAccount.currency, category: oldAccount.category, subcategory: oldAccount.subcategory, description: oldAccount.description, createdTime: oldAccount.createdTime, finalEdditTime: Date())
-//        accounts.formIndex(<#T##i: &Int##Int#>, offsetBy: <#T##Int#>)
-//    }
+    //    func edditAccount(oldAccount: Account) {
+    //        let account = Account(amount: oldAccount.amount, currency: oldAccount.currency, category: oldAccount.category, subcategory: oldAccount.subcategory, description: oldAccount.description, createdTime: oldAccount.createdTime, finalEdditTime: Date())
+    //        accounts.formIndex(<#T##i: &Int##Int#>, offsetBy: <#T##Int#>)
+    //    }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Category {
     var name: String
     var image: String
-    var subcategorys: [String: Subcategory] = [String: Subcategory]()
+    var subcategories: [Subcategory] = [Subcategory]()
 }
 
 struct Subcategory {
