@@ -10,18 +10,21 @@ import SwiftUI
 
 class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
-    @Published var categories: [Category] = [Category]()
+    @Published var categories: [Category] = []
     @Published var selectedCurrency: Currency = .GBP
     @Published var selectedAccountType: AccountType = .expense
-    
     init() {
         addCategory(name: "Food", image: "🍟")
         addCategory(name: "Dring", image: "🥤")
         addCategory(name: "Other", image: "123")
         edditCategory(name: "Other", image: "📃")
+        for index in 1...10 {
+            addCategory(name: "Test\(index)", image: "🔧")
+        }
         addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
         addSubcategory(categoryName: "Food", subcategoryName: "Take")
         edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
+        
         //        addAccount(
         //            amount: 10,
         //            category: categories["Food"] ?? Category(name: "Food", image: "🍟"),
@@ -37,7 +40,9 @@ class AccountData: ObservableObject {
     }
     
     func addCategory(name: String, image: String) {
-        categories.append(Category(name: name, image: image))
+        if !categories.contains(where: { $0.name == name}) {
+            categories.append(Category(name: name, image: image))
+        }
     }
     
     func edditCategory(name: String, image: String) {

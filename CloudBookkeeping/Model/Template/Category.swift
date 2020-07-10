@@ -8,7 +8,8 @@
 
 import SwiftUI
 
-struct Category {
+struct Category: Identifiable {
+    var id: String { self.name }
     var name: String
     var image: String
     var subcategories: [Subcategory] = [Subcategory]()

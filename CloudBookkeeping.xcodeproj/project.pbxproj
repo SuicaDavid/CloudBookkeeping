@@ -22,6 +22,8 @@
 		F133084F24B32DFF0080B5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F133084D24B32DFF0080B5C2 /* LaunchScreen.storyboard */; };
 		F133085A24B32DFF0080B5C2 /* CloudBookkeepingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133085924B32DFF0080B5C2 /* CloudBookkeepingTests.swift */; };
 		F133086524B32DFF0080B5C2 /* CloudBookkeepingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */; };
+		F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */; };
+		F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14537E124B90D6E0005ED0D /* CategoryList.swift */; };
 		F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C624B5FBEF004E2A7C /* AccountList.swift */; };
 		F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* AddAccount.swift */; };
 		F16582CB24B62420004E2A7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582CA24B62420004E2A7C /* AccountType.swift */; };
@@ -67,6 +69,8 @@
 		F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBookkeepingUITests.swift; sourceTree = "<group>"; };
 		F133086624B32DFF0080B5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F133087224B32F340080B5C2 /* CloudBookkeeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CloudBookkeeping.entitlements; sourceTree = "<group>"; };
+		F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		F14537E124B90D6E0005ED0D /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F16582C624B5FBEF004E2A7C /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
 		F16582C824B61C75004E2A7C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
 		F16582CA24B62420004E2A7C /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				F16582C624B5FBEF004E2A7C /* AccountList.swift */,
+				F14537E124B90D6E0005ED0D /* CategoryList.swift */,
+				F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 			files = (
 				F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */,
 				F114FCD624B4823800F3ACF5 /* Account.swift in Sources */,
+				F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */,
 				F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */,
 				F16582CB24B62420004E2A7C /* AccountType.swift in Sources */,
 				F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */,
@@ -357,6 +364,7 @@
 				F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */,
 				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
 				F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */,
+				F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */,
 				F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */,
 				F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */,
 				F114FCD824B483E600F3ACF5 /* Category.swift in Sources */,

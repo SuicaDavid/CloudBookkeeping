@@ -37,12 +37,8 @@ struct AddAccount: View {
                 Spacer()
                 Text("\(currency.getCurrencyUnit()) \(self.amount)")
             }
-            HStack {
-                ForEach(self.accountData.categories, id: \.self.name) { category in
-                    HStack {
-                        Text("\(category.name) \(category.image)")
-                    }
-                }
+            CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
+                CategoryItem(category: category)
             }
             Spacer()
         }
