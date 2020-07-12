@@ -11,7 +11,8 @@ import SwiftUI
 struct CategoryList<ItemView>: View where ItemView: View {
     var categories: [Category]
     private var viewFormItem: (Category) -> ItemView
-    private let itemWidth = 50
+    private let itemWidth: CGFloat = 50
+    private let itemPadding: CGFloat = 10
     
     init(categories: [Category], viewFormItem: @escaping (Category) -> ItemView) {
         self.categories = categories
@@ -26,33 +27,50 @@ struct CategoryList<ItemView>: View where ItemView: View {
     
     func bodyView(geometry: GeometryProxy) -> some View {
         let count = categories.count
-        let colNumber = self.getColNumber(geometry: geometry)
+        let colNumber = self.getColNumber(elementWidth: geometry.size.width)
         let rowNumber = count / colNumber + 1
-        return VStack(alignment: .leading, spacing: 10) {
+        return VStack(alignment: .leading, spacing: 0) {
+            Text("\(geometry.size.width)  \(colNumber)")
             ForEach(0..<rowNumber, id: \.self) { row in
-                HStack(alignment: .center) {
-                    ForEach(0..<min(colNumber, (count - colNumber * row)), id: \.self) { col in
-                        self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+                HStack(alignment: .center, spacing: 0) {
+                    ForEach(0..<self.getColNumber(count: count, colNumber: colNumber, row: row), id: \.self) { col in
+                        Group {
+                            self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+                        }
+                        .padding(.bottom, self.itemPadding)
+                        .padding(.trailing, self.getPadding(count: count, colNumber: colNumber, row: row, col: col))
                     }
                 }
             }
         }
     }
+    func getColNumber(count: Int, colNumber: Int, row: Int) -> Int {
+        return min(colNumber, (count - colNumber * row))
+    }
+    
+    func getPadding(count: Int, colNumber: Int, row: Int, col: Int) -> CGFloat {
+        return col != getColNumber(count: count, colNumber: colNumber, row: row) - 1 ? self.itemPadding : 0
+    }
     
     func getIndexFromList(row: Int, col: Int, colNumber: Int) -> Int {
         return col + row * colNumber
     }
-    
-    func getColNumber(geometry: GeometryProxy) -> Int {
-        let listWidth = geometry.size.width
-        return Int(listWidth) / itemWidth
+
+    func getColNumber(elementWidth: CGFloat) -> Int {
+        return (Int(elementWidth) / Int(itemWidth))
     }
 }
 
 struct CategoryList_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryList<CategoryItem>(categories: AccountData().categories) { category in
-            CategoryItem(category: category)
+        Group {
+            ForEach(["iPad Pro (12.9-inch) (3rd generation)", "iPhone XS Max"], id: \.self) { deviceName in
+                CategoryList<CategoryItem>(categories: AccountData().categories) { category in
+                    CategoryItem(category: category)
+                }
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+            }
         }
     }
 }

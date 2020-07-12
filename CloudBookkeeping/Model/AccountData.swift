@@ -18,7 +18,7 @@ class AccountData: ObservableObject {
         addCategory(name: "Dring", image: "🥤")
         addCategory(name: "Other", image: "123")
         edditCategory(name: "Other", image: "📃")
-        for index in 1...10 {
+        for index in 1...50 {
             addCategory(name: "Test\(index)", image: "🔧")
         }
         addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
