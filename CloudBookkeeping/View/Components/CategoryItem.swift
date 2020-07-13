@@ -10,21 +10,39 @@ import SwiftUI
 
 struct CategoryItem: View {
     @State var category: Category
+    @Binding var selectedCategory: Category?
+    var isSelected: Bool { category == selectedCategory }
+    
     var body: some View {
         VStack {
             Text("\(category.image)")
             Text("\(category.name)")
         }
-        .foregroundColor(.white)
-        .frame(width:50, height: 50)
-        .background(Color.orange)
+        .foregroundColor(getForegroundColor())
+        .frame(width: getDynamicSize(), height: getDynamicSize())
+        .background(getBackgroundColor())
         .cornerRadius(5)
-        
+        .onTapGesture {
+            self.selectedCategory = self.category
+        }
+    }
+    func getForegroundColor() -> Color {
+        return isSelected ? .white : .black
+    }
+    func getBackgroundColor() -> Color {
+        return isSelected ? Color.orange: .gray
+    }
+    
+    func getDynamicSize() -> CGFloat {
+        return isSelected ? 55 : 50
     }
 }
 
 struct CategoryItem_Previews: PreviewProvider {
+    @State static var category = Category(name: "Food", image: "🍔")
+    @State static var selectedCategory: Category?
     static var previews: some View {
-        CategoryItem(category: Category(name: "Food", image: "🍔"))
+        CategoryItem(category: CategoryItem_Previews.category, selectedCategory:
+            CategoryItem_Previews.$selectedCategory) 
     }
 }

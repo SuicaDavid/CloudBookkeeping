@@ -13,6 +13,7 @@ struct AddAccount: View {
     @State private var accountType: AccountType
     @State private var currency: Currency
     @State private var amount: Double = 0
+    @State private var selectedCategory: Category?
     @State private var createdTime = Date()
     @State private var showDatePicker: Bool = false
     
@@ -40,7 +41,7 @@ struct AddAccount: View {
                 Text("\(currency.getCurrencyUnit()) \(self.amount)")
             }
             CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
-                CategoryItem(category: category)
+                CategoryItem(category: category, selectedCategory: self.$selectedCategory)
             }
             HStack {
                 Text("\(createdTime.getCustomDateString())")

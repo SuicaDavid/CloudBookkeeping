@@ -78,11 +78,13 @@ struct CategoryList<ItemView>: View where ItemView: View {
 }
 
 struct CategoryList_Previews: PreviewProvider {
+    @State static var category = Category(name: "Food", image: "🍔")
+    @State static var selectedCategory: Category?
     static var previews: some View {
         Group {
             ForEach(["iPad Pro (12.9-inch) (3rd generation)", "iPhone XS Max"], id: \.self) { deviceName in
                 CategoryList<CategoryItem>(categories: AccountData().categories) { category in
-                    CategoryItem(category: category)
+                    CategoryItem(category: CategoryList_Previews.category, selectedCategory: CategoryList_Previews.$selectedCategory)
                 }
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

@@ -8,8 +8,12 @@
 
 import SwiftUI
 
-struct Category: Identifiable {
-    var id: String { self.name }
+struct Category: Identifiable, Equatable {
+    static func == (lhs: Category, rhs: Category) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    var id: UUID = UUID()
     var name: String
     var image: String
     var subcategories: [Subcategory] = [Subcategory]()
