@@ -24,6 +24,7 @@
 		F133086524B32DFF0080B5C2 /* CloudBookkeepingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133086424B32DFF0080B5C2 /* CloudBookkeepingUITests.swift */; };
 		F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */; };
 		F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14537E124B90D6E0005ED0D /* CategoryList.swift */; };
+		F152C7CF24BC7B9700600042 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F152C7CE24BC7B9700600042 /* DateExtension.swift */; };
 		F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C624B5FBEF004E2A7C /* AccountList.swift */; };
 		F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* AddAccount.swift */; };
 		F16582CB24B62420004E2A7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582CA24B62420004E2A7C /* AccountType.swift */; };
@@ -71,6 +72,7 @@
 		F133087224B32F340080B5C2 /* CloudBookkeeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CloudBookkeeping.entitlements; sourceTree = "<group>"; };
 		F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		F14537E124B90D6E0005ED0D /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
+		F152C7CE24BC7B9700600042 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F16582C624B5FBEF004E2A7C /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
 		F16582C824B61C75004E2A7C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
 		F16582CA24B62420004E2A7C /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */,
+				F152C7CE24BC7B9700600042 /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */,
 				F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */,
 				F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */,
+				F152C7CF24BC7B9700600042 /* DateExtension.swift in Sources */,
 				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
 				F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */,
 				F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */,

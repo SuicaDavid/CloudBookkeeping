@@ -13,6 +13,8 @@ struct AddAccount: View {
     @State private var accountType: AccountType
     @State private var currency: Currency
     @State private var amount: Double = 0
+    @State private var createdTime = Date()
+    @State private var showDatePicker: Bool = false
     
     init(accountData: AccountData) {
         _accountData = State(wrappedValue: accountData)
@@ -20,8 +22,8 @@ struct AddAccount: View {
         _currency = State(wrappedValue: accountData.selectedCurrency)
     }
     
-    var body: some View {
-        return VStack {
+    var body: some View{
+        return VStack(alignment: .leading)  {
             HStack {
                 ForEach(AccountType.allCases) { type in
                     Text("\(type.description)")
@@ -40,6 +42,16 @@ struct AddAccount: View {
             CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                 CategoryItem(category: category)
             }
+            HStack {
+                Text("\(createdTime.getCustomDateString())")
+                    .onTapGesture {
+                        self.showDatePicker.toggle()
+                }
+                .sheet(isPresented: self.$showDatePicker) {
+                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
+                }
+                Text("Input the description")
+            }
             Spacer()
         }
         .padding()
@@ -48,6 +60,13 @@ struct AddAccount: View {
 
 struct AddAccount_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccount(accountData: AccountData())
+        Group {
+            ForEach(["iPad Pro (12.9-inch) (3rd generation)", "iPhone XS Max"], id: \.self) { deviceName in
+                AddAccount(accountData: AccountData())
+                    .previewDevice(PreviewDevice(rawValue: deviceName))
+                    .previewDisplayName(deviceName)
+            }
+        }
+        
     }
 }

@@ -13,6 +13,7 @@ struct CategoryList<ItemView>: View where ItemView: View {
     private var viewFormItem: (Category) -> ItemView
     private var itemWidth: CGFloat = 50
     private var itemPadding: CGFloat = 10
+    private var displayRow: Int = 3
     
     init(categories: [Category], viewFormItem: @escaping (Category) -> ItemView) {
         self.categories = categories
@@ -23,6 +24,7 @@ struct CategoryList<ItemView>: View where ItemView: View {
         GeometryReader { geometry in
             self.bodyView(geometry: geometry)
         }
+        .frame(height: (itemWidth + itemPadding) * CGFloat(displayRow))
     }
     
     func bodyView(geometry: GeometryProxy) -> some View {
@@ -31,19 +33,25 @@ struct CategoryList<ItemView>: View where ItemView: View {
         let colNumber = self.getColNumber(elementWidth: elementWidth)
         let rowNumber = count / colNumber + 1
         let calculatedPadding = self.getPadding(elementWidth: elementWidth, colNumber: colNumber)
-        return VStack(alignment: .leading, spacing: 0) {
-            ForEach(0..<rowNumber, id: \.self) { row in
-                HStack(alignment: .center, spacing: 0) {
-                    ForEach(0..<self.getDynamicColNumber(count: count, colNumber: colNumber, row: row), id: \.self) { col in
-                        Group {
-                            self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+        return ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(0..<rowNumber, id: \.self) { row in
+                    HStack(alignment: .center, spacing: 0) {
+                        ForEach(0..<self.getDynamicColNumber(count: count, colNumber: colNumber, row: row), id: \.self) { col in
+                            Group {
+                                self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+                            }
+                            .padding(.bottom, calculatedPadding)
+                            .padding(.trailing, self.getLastPadding(padding: calculatedPadding, count: count, colNumber: colNumber, row: row, col: col))
                         }
-                        .padding(.bottom, calculatedPadding)
-                        .padding(.trailing, self.getLastPadding(padding: calculatedPadding, count: count, colNumber: colNumber, row: row, col: col))
                     }
                 }
             }
         }
+        .frame(height: self.getElementHeight(calculatedPadding: calculatedPadding))
+    }
+    func getElementHeight(calculatedPadding: CGFloat) -> CGFloat {
+        return CGFloat(self.displayRow) * (self.itemWidth + calculatedPadding) - calculatedPadding
     }
     func getPadding(elementWidth: CGFloat, colNumber: Int) -> CGFloat {
         let gap = elementWidth - ((self.itemPadding + self.itemWidth) * CGFloat(colNumber) - self.itemPadding)
@@ -65,8 +73,8 @@ struct CategoryList<ItemView>: View where ItemView: View {
     }
     
     func getDynamicColNumber(count: Int, colNumber: Int, row: Int) -> Int {
-           return min(colNumber, (count - colNumber * row))
-       }
+        return min(colNumber, (count - colNumber * row))
+    }
 }
 
 struct CategoryList_Previews: PreviewProvider {
