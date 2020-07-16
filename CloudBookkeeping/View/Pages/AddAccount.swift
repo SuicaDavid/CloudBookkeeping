@@ -14,6 +14,7 @@ struct AddAccount: View {
     @State private var currency: Currency
     @State private var amount: Double = 0
     @State private var selectedCategory: Category?
+    @State private var description: String = ""
     @State private var createdTime = Date()
     @State private var showDatePicker: Bool = false
     
@@ -24,40 +25,53 @@ struct AddAccount: View {
     }
     
     var body: some View{
-        return VStack(alignment: .leading)  {
-            HStack {
-                ForEach(AccountType.allCases) { type in
-                    Text("\(type.description)")
-                        .font(type == self.accountType ? .headline : .body)
-                        .foregroundColor(type == self.accountType ? .red : .none)
-                        .onTapGesture {
-                            self.accountType = type
+            VStack(alignment: .leading)  {
+                ZStack {
+                    Color.black.edgesIgnoringSafeArea(.top)
+                    HStack {
+                        ForEach(AccountType.allCases) { type in
+                            Text("\(type.description)")
+                                .font(type == self.accountType ? .headline : .body)
+                                .foregroundColor(type == self.accountType ? .red : .white)
+                                .onTapGesture {
+                                    self.accountType = type
+                            }
+                        }
                     }
                 }
-            }
-            HStack {
-                Text("Amount")
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                
+                Divider()
+                HStack {
+                    Text("Amount")
+                    Spacer()
+                    Text("\(self.currency.getCurrencyUnit()) \(self.amount)")
+                }
+                CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
+                    CategoryItem(category: category, selectedCategory: self.$selectedCategory)
+                }
+                HStack {
+                    Text("\(self.createdTime.getCustomDateString())")
+                        .onTapGesture {
+                            self.showDatePicker.toggle()
+                    }
+                    .sheet(isPresented: self.$showDatePicker) {
+                        DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
+                    }
+                    TextField("Input the description", text: self.$description, onEditingChanged: { began in
+                        print(began)
+                    })
+                }
                 Spacer()
-                Text("\(currency.getCurrencyUnit()) \(self.amount)")
+                Button(action: {
+                    print("submit")
+                }, label: {
+                    Text("Add Account")
+                })
             }
-            CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
-                CategoryItem(category: category, selectedCategory: self.$selectedCategory)
-            }
-            HStack {
-                Text("\(createdTime.getCustomDateString())")
-                    .onTapGesture {
-                        self.showDatePicker.toggle()
-                }
-                .sheet(isPresented: self.$showDatePicker) {
-                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
-                }
-                Text("Input the description")
-            }
-            Spacer()
         }
-        .padding()
-    }
 }
+
 
 struct AddAccount_Previews: PreviewProvider {
     static var previews: some View {

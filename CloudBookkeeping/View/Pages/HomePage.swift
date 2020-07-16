@@ -44,14 +44,14 @@ struct HomePage: View {
                         RoundedRectangle(cornerRadius: 50)
                             .stroke(Color.orange, lineWidth: 5)
                 )
+                .sheet(isPresented: self.$showAddAccountSheet) {
+                    AddAccount(accountData: self.accountData)
+                }
                 
                 AccountList(accounts: self.accountData.accounts)
                 Spacer()
             }
             .padding()
-            .sheet(isPresented: self.$showAddAccountSheet) {
-                AddAccount(accountData: self.accountData)
-            }
         }
     }
 }

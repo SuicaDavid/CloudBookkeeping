@@ -34,7 +34,8 @@ struct CategoryItem: View {
     }
     
     func getDynamicSize() -> CGFloat {
-        return isSelected ? 55 : 50
+//        return isSelected ? 50 : 50
+        return 50
     }
 }
 
