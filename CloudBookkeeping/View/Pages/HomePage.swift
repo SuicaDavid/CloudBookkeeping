@@ -45,9 +45,9 @@ struct HomePage: View {
                             .stroke(Color.orange, lineWidth: 5)
                 )
                 .sheet(isPresented: self.$showAddAccountSheet) {
-                    AddAccount(accountData: self.accountData)
+                    AddAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
-                
+                Text("\(self.accountData.accounts[1].description)")
                 AccountList(accounts: self.accountData.accounts)
                 Spacer()
             }

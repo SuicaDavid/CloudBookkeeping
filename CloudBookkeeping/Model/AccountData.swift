@@ -15,28 +15,30 @@ class AccountData: ObservableObject {
     @Published var selectedAccountType: AccountType = .expense
     init() {
         addCategory(name: "Food", image: "🍟")
-        addCategory(name: "Dring", image: "🥤")
+        addCategory(name: "Drink", image: "🥤")
         addCategory(name: "Other", image: "123")
         edditCategory(name: "Other", image: "📃")
         for index in 1...50 {
             addCategory(name: "Test\(index)", image: "🔧")
         }
         addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
+        addSubcategory(categoryName: "Food", subcategoryName: "Delivery")
         addSubcategory(categoryName: "Food", subcategoryName: "Take")
         edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
+        addSubcategory(categoryName: "Drink", subcategoryName: "Coffee")
         
-        //        addAccount(
-        //            amount: 10,
-        //            category: categories["Food"] ?? Category(name: "Food", image: "🍟"),
-        //            subcategory: categories["Food"]?.subcategorys["Delivery"] ??  Subcategory(name: "Delivery"),
-        //            description: "KFC"
-        //        )
-        //        addAccount(
-        //            amount: 24,
-        //            category: categories["Drink"] ?? Category(name: "Drink", image: "🥤"),
-        //            subcategory: categories["Drink"]?.subcategorys["Coffee"] ??  Subcategory(name: "Coffee"),
-        //            description: "Starbucks"
-        //        )
+        addAccount(
+            amount: 10,
+            categoryName: "Food",
+            subcategoryName: "Delivery",
+            description: "KFC"
+        )
+        addAccount(
+            amount: 24,
+            categoryName: "Drink",
+            subcategoryName: "Coffee",
+            description: "Starbucks"
+        )
     }
     
     func addCategory(name: String, image: String) {
@@ -67,16 +69,29 @@ class AccountData: ObservableObject {
         }
     }
     
-    func addAccount(amount: Double, category: Category, subcategory: Subcategory, description: String) {
-        let account = Account(
+    func addAccount(amount: Double, categoryName: String, subcategoryName: String?, description: String) {
+        if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
+            print(categoryIndex)
+            let category: Category = categories[categoryIndex]
+            var subcategory: Subcategory? = nil
+            if let subcategoryIndex = category.subcategories.firstIndex(where: { $0.name == subcategoryName }) {
+                subcategory = category.subcategories[subcategoryIndex]
+            }
+            let account = Account(
             amount: amount,
             accountType: self.selectedAccountType,
             currency: self.selectedCurrency,
-            category: category, subcategory: subcategory,
+            category: category,
+            subcategory: subcategory,
             description: description,
             createdTime: Date(),
             finalEdditTime: Date())
-        accounts.append(account)
+            accounts.append(account)
+        }
+        print("+++")
+        for account in accounts {
+            print(account.description)
+        }
     }
     
     //    func edditAccount(oldAccount: Account) {

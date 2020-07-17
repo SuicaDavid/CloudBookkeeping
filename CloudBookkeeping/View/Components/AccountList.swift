@@ -16,7 +16,10 @@ struct AccountList: View {
             ForEach(accounts, id: \.self.id ) { account in
                 return HStack {
                     Text(account.category.image)
-                    Text("\(account.category.name) - \(account.subcategory.name)")
+                    Text("\(account.category.name)")
+                    if account.subcategory != nil {
+                        Text(" - \(account.subcategory!.name)")
+                    }
                     Spacer()
                     // TODO: Localization
                     Text("\(NumberFormatter.localizedString(from: NSNumber(value: account.amount), number: .currency))")

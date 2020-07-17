@@ -14,7 +14,7 @@ struct Account {
     var accountType: AccountType
     var currency: Currency
     var category: Category
-    var subcategory: Subcategory
+    var subcategory: Subcategory?
     var description: String
     var createdTime: Date
     var finalEdditTime: Date
