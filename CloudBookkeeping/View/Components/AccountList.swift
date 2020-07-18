@@ -27,6 +27,7 @@ struct AccountList: View {
                 .padding()
             }
         }
+        .font(.body)
     }
 }
 

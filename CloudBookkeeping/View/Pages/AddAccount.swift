@@ -119,7 +119,7 @@ struct AddAccount: View {
             accountData.addAccount(
                 amount: self.amount,
                 categoryName: self.selectedCategory!.name,
-                subcategoryName: self.selectedSubcategory!.name,
+                subcategoryName: self.selectedSubcategory?.name ?? nil,
                 description: self.description
             )
         }
