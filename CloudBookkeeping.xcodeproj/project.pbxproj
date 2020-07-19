@@ -28,6 +28,7 @@
 		F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C624B5FBEF004E2A7C /* AccountList.swift */; };
 		F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* AddAccount.swift */; };
 		F16582CB24B62420004E2A7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582CA24B62420004E2A7C /* AccountType.swift */; };
+		F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172302424C3B27E0095A955 /* SubcategoryList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		F16582C624B5FBEF004E2A7C /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
 		F16582C824B61C75004E2A7C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
 		F16582CA24B62420004E2A7C /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
+		F172302424C3B27E0095A955 /* SubcategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				F16582C624B5FBEF004E2A7C /* AccountList.swift */,
 				F14537E124B90D6E0005ED0D /* CategoryList.swift */,
 				F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */,
+				F172302424C3B27E0095A955 /* SubcategoryList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */,
 				F16582CB24B62420004E2A7C /* AccountType.swift in Sources */,
 				F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */,
+				F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */,
 				F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */,
 				F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */,
 				F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */,

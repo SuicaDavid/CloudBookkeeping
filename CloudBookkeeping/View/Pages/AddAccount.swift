@@ -19,6 +19,7 @@ struct AddAccount: View {
     @State private var description: String = ""
     @State private var createdTime = Date()
     @State private var showDatePicker: Bool = false
+    @State private var showSubcategoryPicker: Bool = false
     
     init(accountData: Binding<AccountData>, isVisible: Binding<Bool>) {
         _accountData = accountData
@@ -64,15 +65,20 @@ struct AddAccount: View {
                         .bold()
                     Spacer()
                     TextField("input the amount of account", value: $amount, formatter: formatterOfAmount)
-                    .font(.title)
+                        .font(.title)
                         .multilineTextAlignment(.trailing)
                 }
                 Text("\(amount)")
                 Divider()
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
-                    CategoryItem(category: category, selectedCategory: self.$selectedCategory)
+                    CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
+                        if (self.selectedCategory?.subcategories.count)! > 0 {
+                             self.showSubcategoryPicker = true
+                        }
+                    }
                 }
                 .padding()
+                
                 Divider()
                 HStack {
                     Text("\(self.createdTime.getCustomDateString())")
@@ -100,8 +106,13 @@ struct AddAccount: View {
                 })
             }
             .padding()
+            .sheet(isPresented: $showSubcategoryPicker) {
+                SubcategoryList(subcategories: self.selectedCategory!.subcategories) { selectedSubcategory in
+                    self.selectedSubcategory = selectedSubcategory
+                    self.showSubcategoryPicker = false
+                }
+            }
         }
-        
     }
     private var formatterOfAmount: NumberFormatter {
         let formatter = NumberFormatter()

@@ -11,6 +11,8 @@ import SwiftUI
 struct CategoryItem: View {
     @State var category: Category
     @Binding var selectedCategory: Category?
+    @State var onTapItemGesture: (() -> Void)?
+    
     var isSelected: Bool { category == selectedCategory }
     
     var body: some View {
@@ -24,6 +26,7 @@ struct CategoryItem: View {
         .cornerRadius(5)
         .onTapGesture {
             self.selectedCategory = self.category
+            self.onTapItemGesture?()
         }
     }
     func getForegroundColor() -> Color {

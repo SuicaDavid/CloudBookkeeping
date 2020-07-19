@@ -14,17 +14,22 @@ struct AccountList: View {
     var body: some View {
         VStack {
             ForEach(accounts, id: \.self.id ) { account in
-                return HStack {
+                HStack {
                     Text(account.category.image)
-                    Text("\(account.category.name)")
-                    if account.subcategory != nil {
-                        Text(" - \(account.subcategory!.name)")
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("\(account.category.name)")
+                            if account.subcategory != nil {
+                                Text(" - \(account.subcategory!.name)")
+                            }
+                            Spacer()
+                            // TODO: Localization
+                            Text("\(NumberFormatter.localizedString(from: NSNumber(value: account.amount), number: .currency))")
+                        }
+                        Text(account.description)
                     }
-                    Spacer()
-                    // TODO: Localization
-                    Text("\(NumberFormatter.localizedString(from: NSNumber(value: account.amount), number: .currency))")
+                    .padding(.vertical)
                 }
-                .padding()
             }
         }
         .font(.body)

@@ -19,6 +19,10 @@ struct Category: Identifiable, Equatable {
     var subcategories: [Subcategory] = [Subcategory]()
 }
 
-struct Subcategory {
+struct Subcategory: Identifiable, Equatable {
+    static func == (lhs: Subcategory, rhs: Subcategory) -> Bool {
+        lhs.id == rhs.id
+    }
+    var id: UUID = UUID()
     var name: String
 }
