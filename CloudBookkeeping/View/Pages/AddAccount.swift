@@ -85,9 +85,7 @@ struct AddAccount: View {
                         .onTapGesture {
                             self.showDatePicker.toggle()
                     }
-                    .sheet(isPresented: self.$showDatePicker) {
-                        DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
-                    }
+                    
                     TextField("Input the description", text: self.$description, onEditingChanged: { changed in
                         print("began: \(changed)")
                     }, onCommit: {
@@ -104,12 +102,26 @@ struct AddAccount: View {
                 }, label: {
                     Text("Add Account")
                 })
+                
+//                if self.showSubcategoryPicker {
+//                    ZStack {
+//                        SubcategoryList(subcategories: self.selectedCategory!.subcategories) { selectedSubcategory in
+//                            self.selectedSubcategory = selectedSubcategory
+//                            self.showSubcategoryPicker = false
+//                        }
+//                    }
+//                }
             }
             .padding()
             .sheet(isPresented: $showSubcategoryPicker) {
                 SubcategoryList(subcategories: self.selectedCategory!.subcategories) { selectedSubcategory in
                     self.selectedSubcategory = selectedSubcategory
                     self.showSubcategoryPicker = false
+                }
+            }
+            .sheet(isPresented: $showDatePicker) {
+                HStack {
+                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
                 }
             }
         }
