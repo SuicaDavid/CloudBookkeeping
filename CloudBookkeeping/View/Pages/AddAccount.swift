@@ -73,7 +73,7 @@ struct AddAccount: View {
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
                         if (self.selectedCategory?.subcategories.count)! > 0 {
-                             self.showSubcategoryPicker = true
+                            self.showSubcategoryPicker = true
                         }
                     }
                 }
@@ -102,30 +102,36 @@ struct AddAccount: View {
                 }, label: {
                     Text("Add Account")
                 })
-                
-//                if self.showSubcategoryPicker {
-//                    ZStack {
-//                        SubcategoryList(subcategories: self.selectedCategory!.subcategories) { selectedSubcategory in
-//                            self.selectedSubcategory = selectedSubcategory
-//                            self.showSubcategoryPicker = false
-//                        }
-//                    }
-//                }
             }
             .padding()
-            .sheet(isPresented: $showSubcategoryPicker) {
-                SubcategoryList(subcategories: self.selectedCategory!.subcategories) { selectedSubcategory in
-                    self.selectedSubcategory = selectedSubcategory
-                    self.showSubcategoryPicker = false
-                }
+            .actionSheet(isPresented: $showSubcategoryPicker) {
+                ActionSheet(
+                    title: Text("title"),
+                    message: Text("Message"),
+                    buttons: self.getSubtegoryPickerButtons()
+                )
             }
-            .sheet(isPresented: $showDatePicker) {
-                HStack {
-                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
-                }
-            }
+            
+            //            .sheet(isPresented: $showDatePicker) {
+            //                HStack {
+            //                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
+            //                }
+            //            }
+            
         }
     }
+    
+    private func getSubtegoryPickerButtons() -> [ActionSheet.Button] {
+        var buttons = self.selectedCategory!.subcategories.map { subtegory in
+            Alert.Button.default(Text("\(subtegory.name)")) {
+                self.selectedSubcategory = subtegory
+                self.showSubcategoryPicker = false
+            }
+        }
+        buttons.append(Alert.Button.cancel())
+        return buttons
+    }
+    
     private var formatterOfAmount: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currencyAccounting
