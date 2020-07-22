@@ -34,6 +34,9 @@ struct AddAccount: View {
                 self.selectedCategory = self.accountData.categories[0]
         }
     }
+    
+    
+    
     func bodyView() -> some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .leading) {
@@ -68,7 +71,6 @@ struct AddAccount: View {
                         .font(.title)
                         .multilineTextAlignment(.trailing)
                 }
-                Text("\(amount)")
                 Divider()
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
@@ -80,6 +82,12 @@ struct AddAccount: View {
                 .padding()
                 
                 Divider()
+                
+                if showDatePicker {
+                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: [.hourAndMinute, .date])
+                        .labelsHidden()
+                }
+                
                 HStack {
                     Text("\(self.createdTime.getCustomDateString())")
                         .onTapGesture {
@@ -111,13 +119,6 @@ struct AddAccount: View {
                     buttons: self.getSubtegoryPickerButtons()
                 )
             }
-            
-            //            .sheet(isPresented: $showDatePicker) {
-            //                HStack {
-            //                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: .date)
-            //                }
-            //            }
-            
         }
     }
     
