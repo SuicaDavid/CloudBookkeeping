@@ -71,27 +71,34 @@ struct AddAccount: View {
                         .font(.title)
                         .multilineTextAlignment(.trailing)
                 }
+                Text("\(amount)")
                 Divider()
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
                         if (self.selectedCategory?.subcategories.count)! > 0 {
-                            self.showSubcategoryPicker = true
+                            self.showSubcategoryPicker.toggle()
                         }
                     }
                 }
                 .padding()
+                .actionSheet(isPresented: $showSubcategoryPicker) {
+                    ActionSheet(
+                        title: Text("title"),
+                        message: Text("Message"),
+                        buttons: self.getSubtegoryPickerButtons()
+                    )
+                }
                 
                 Divider()
                 
-                if showDatePicker {
-                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: [.hourAndMinute, .date])
-                        .labelsHidden()
-                }
+                
                 
                 HStack {
                     Text("\(self.createdTime.getCustomDateString())")
                         .onTapGesture {
-                            self.showDatePicker.toggle()
+                            withAnimation {
+                                self.showDatePicker.toggle()
+                            }
                     }
                     
                     TextField("Input the description", text: self.$description, onEditingChanged: { changed in
@@ -102,6 +109,12 @@ struct AddAccount: View {
                 }
                 .padding(.vertical)
                 Divider()
+                
+                if showDatePicker {
+                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: [.hourAndMinute, .date])
+                        .labelsHidden()
+                }
+                
                 Spacer()
                 Button(action: {
                     print("submit")
@@ -112,13 +125,6 @@ struct AddAccount: View {
                 })
             }
             .padding()
-            .actionSheet(isPresented: $showSubcategoryPicker) {
-                ActionSheet(
-                    title: Text("title"),
-                    message: Text("Message"),
-                    buttons: self.getSubtegoryPickerButtons()
-                )
-            }
         }
     }
     
@@ -126,7 +132,7 @@ struct AddAccount: View {
         var buttons = self.selectedCategory!.subcategories.map { subtegory in
             Alert.Button.default(Text("\(subtegory.name)")) {
                 self.selectedSubcategory = subtegory
-                self.showSubcategoryPicker = false
+                self.showSubcategoryPicker.toggle()
             }
         }
         buttons.append(Alert.Button.cancel())

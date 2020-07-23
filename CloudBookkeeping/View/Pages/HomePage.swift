@@ -31,8 +31,10 @@ struct HomePage: View {
                 Button(action: {
                     self.showAddAccountSheet = true
                 }, label: {
+                    Spacer()
                     Image(systemName: "plus")
                     Text("Add New Account")
+                    Spacer()
                 })
                     .font(.title)
                     .frame(maxWidth: geometry.size.width)
