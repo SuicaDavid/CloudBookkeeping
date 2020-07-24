@@ -12,7 +12,7 @@ struct AddAccount: View {
     @Binding var accountData: AccountData
     @Binding var isVisible: Bool
     @State private var accountType: AccountType?
-    @State private var currency: Currency?
+    @State private var currency: Currency? = Currency.GBP
     @State private var amount: Double = 0
     @State private var selectedCategory: Category?
     @State private var selectedSubcategory: Subcategory?
@@ -67,19 +67,8 @@ struct AddAccount: View {
                         .font(.largeTitle)
                         .bold()
                     Spacer()
-                    TextField("input the amount of account",
-                              value: $amount,
-                              formatter: formatterOfAmount,
-                              onEditingChanged: { changed in
-                                print("amount changed: \(changed)")
-                    },
-                              onCommit: {
-                                print("amount commit")
-                    })
-                        .font(.title)
-                        .multilineTextAlignment(.trailing)
+                    AmountTextField(amount: $amount, currency: self.currency!)
                 }
-                Text("\(amount)")
                 Divider()
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
@@ -109,11 +98,7 @@ struct AddAccount: View {
                             }
                     }
                     
-                    TextField("Input the description", text: self.$description, onEditingChanged: { changed in
-                        print("began: \(changed)")
-                    }, onCommit: {
-                        print("Commit")
-                    })
+                    DescriptionTextField(description: $description)
                 }
                 .padding(.vertical)
                 Divider()
@@ -147,15 +132,6 @@ struct AddAccount: View {
         return buttons
     }
     
-    private var formatterOfAmount: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currencyAccounting
-        formatter.currencySymbol = currency?.getCurrencyUnit()
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        return formatter
-    }
-    
     func addAccount() {
         print(self.amount)
         if self.amount > 0, self.selectedCategory != nil {
@@ -170,6 +146,42 @@ struct AddAccount: View {
     }
 }
 
+struct AmountTextField: View {
+    @Binding var amount: Double
+    @State var currency: Currency
+    var body: some View {
+        TextField("input the amount of account",
+                  value: $amount,
+                  formatter: formatterOfAmount,
+                  onEditingChanged: { changed in
+                    print("amount changed: \(changed)")
+        },
+                  onCommit: {
+                    print("amount commit")
+        })
+            .font(.title)
+            .multilineTextAlignment(.trailing)
+    }
+    private var formatterOfAmount: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currencyAccounting
+        formatter.currencySymbol = currency.getCurrencyUnit()
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter
+    }
+}
+
+struct DescriptionTextField: View {
+    @Binding var description: String
+    var body: some View {
+        TextField("Input the description", text: self.$description, onEditingChanged: { changed in
+            print("began: \(changed)")
+        }, onCommit: {
+            print("Commit")
+        })
+    }
+}
 
 struct AddAccount_Previews: PreviewProvider {
     static var previews: some View {
