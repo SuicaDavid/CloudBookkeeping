@@ -12,14 +12,24 @@ import UIKit
 struct HomePage: View {
     @State var accountData: AccountData
     @State private var showAddAccountSheet: Bool = false
+    private var monthlyAmount: Double {
+        get {
+            var totalAmount: Double = 0
+            accountData.accounts.forEach { account in
+                totalAmount = totalAmount + account.amount
+            }
+            
+            return totalAmount
+        }
+    }
     var body: some View {
-        GeometryReader { geometry in
+        return GeometryReader { geometry in
             return VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("Monthly Disbursement")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text("10000")
+                    Text(self.accountData.selectedCurrency.getCurrencyUnit() + String(format: "%.2f", Float(self.monthlyAmount)))
                         .font(.title)
                         .fontWeight(.medium)
                     HStack {

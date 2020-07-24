@@ -67,7 +67,15 @@ struct AddAccount: View {
                         .font(.largeTitle)
                         .bold()
                     Spacer()
-                    TextField("input the amount of account", value: $amount, formatter: formatterOfAmount)
+                    TextField("input the amount of account",
+                              value: $amount,
+                              formatter: formatterOfAmount,
+                              onEditingChanged: { changed in
+                                print("amount changed: \(changed)")
+                    },
+                              onCommit: {
+                                print("amount commit")
+                    })
                         .font(.title)
                         .multilineTextAlignment(.trailing)
                 }
