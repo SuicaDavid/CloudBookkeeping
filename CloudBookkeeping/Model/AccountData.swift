@@ -11,9 +11,12 @@ import SwiftUI
 class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
     @Published var categories: [Category] = []
+//    @Published var categoryIcons: [Image]
     @Published var selectedCurrency: Currency = .GBP
     @Published var selectedAccountType: AccountType = .expense
+    
     init() {
+        initCategoryIcon()
         addCategory(name: "Food", image: "🍟")
         addCategory(name: "Drink", image: "🥤")
         addCategory(name: "Other", image: "123")
@@ -39,6 +42,21 @@ class AccountData: ObservableObject {
             subcategoryName: "Coffee",
             description: "Starbucks"
         )
+    }
+    
+    func initCategoryIcon() {
+        let fileManager = FileManager.default
+        let imagePath = Bundle.main.resourcePath!
+        let imageNames = try? fileManager.contentsOfDirectory(atPath: imagePath)
+        let pattern = ".(png)$"
+        let regex = try? NSRegularExpression(pattern: pattern)
+        
+        for imageName in imageNames! {
+            let range = NSRange(location: 0, length: imageName.utf16.count)
+            if regex?.firstMatch(in: imageName, range: range) != nil {
+                print("\(imageName) ")
+            }
+        }
     }
     
     func addCategory(name: String, image: String) {
