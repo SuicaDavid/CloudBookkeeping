@@ -60,6 +60,7 @@ struct HomePage: View {
                     AddAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
                 Text("\(self.accountData.accounts[1].description)")
+                Image("other")
                 AccountList(accounts: self.accountData.accounts)
                 Spacer()
             }

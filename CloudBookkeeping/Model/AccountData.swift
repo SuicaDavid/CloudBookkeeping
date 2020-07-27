@@ -11,24 +11,14 @@ import SwiftUI
 class AccountData: ObservableObject {
     @Published var accounts: Array<Account> = []
     @Published var categories: [Category] = []
-//    @Published var categoryIcons: [Image]
+    @Published var categoryIcons: [String: UIImage]?
     @Published var selectedCurrency: Currency = .GBP
     @Published var selectedAccountType: AccountType = .expense
     
     init() {
         initCategoryIcon()
-        addCategory(name: "Food", image: "🍟")
-        addCategory(name: "Drink", image: "🥤")
-        addCategory(name: "Other", image: "123")
-        edditCategory(name: "Other", image: "📃")
-        for index in 1...50 {
-            addCategory(name: "Test\(index)", image: "🔧")
-        }
-        addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
-        addSubcategory(categoryName: "Food", subcategoryName: "Delivery")
-        addSubcategory(categoryName: "Food", subcategoryName: "Take")
-        edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
-        addSubcategory(categoryName: "Drink", subcategoryName: "Coffee")
+        initCategory()
+        initSubcategory()
         
         addAccount(
             amount: 10,
@@ -50,23 +40,44 @@ class AccountData: ObservableObject {
         let imageNames = try? fileManager.contentsOfDirectory(atPath: imagePath)
         let pattern = ".(png)$"
         let regex = try? NSRegularExpression(pattern: pattern)
-        
+        var categoryIcons: [String: UIImage]? = [:]
         for imageName in imageNames! {
             let range = NSRange(location: 0, length: imageName.utf16.count)
             if regex?.firstMatch(in: imageName, range: range) != nil {
-                print("\(imageName) ")
+                categoryIcons?[imageName.stripFile()] = UIImage(contentsOfFile: imagePath + "/\(imageName)")
             }
+        }
+        self.categoryIcons = categoryIcons
+    }
+    
+    func initCategory() {
+        addCategory(name: "Food", imageName: "Food")
+        addCategory(name: "Drink", imageName: "Drink")
+        addCategory(name: "Other", imageName: "123")
+        edditCategory(name: "Other", imageName: "📃")
+        for index in 1...50 {
+            addCategory(name: "Test\(index)", imageName: "🔧")
         }
     }
     
-    func addCategory(name: String, image: String) {
+    func initSubcategory() {
+        addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
+        addSubcategory(categoryName: "Food", subcategoryName: "Delivery")
+        addSubcategory(categoryName: "Food", subcategoryName: "Take")
+        edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
+        addSubcategory(categoryName: "dring", subcategoryName: "Coffee")
+    }
+    
+    func addCategory(name: String, imageName: String) {
         if !categories.contains(where: { $0.name == name}) {
+            let image = categoryIcons?[imageName.lowercased()] ?? categoryIcons!["other"]!
             categories.append(Category(name: name, image: image))
         }
     }
     
-    func edditCategory(name: String, image: String) {
+    func edditCategory(name: String, imageName: String) {
         if let index = categories.firstIndex(where: { $0.name == name }) {
+            let image = categoryIcons?[imageName.lowercased()] ?? categoryIcons!["other"]!
             categories[index] = Category(name: name, image: image)
         }
     }
@@ -105,10 +116,6 @@ class AccountData: ObservableObject {
             createdTime: Date(),
             finalEdditTime: Date())
             accounts.append(account)
-        }
-        print("+++")
-        for account in accounts {
-            print(account.description)
         }
     }
     

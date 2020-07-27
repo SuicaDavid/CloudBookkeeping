@@ -15,7 +15,9 @@ struct AccountList: View {
         VStack {
             ForEach(accounts, id: \.self.id ) { account in
                 HStack {
-                    Text(account.category.image)
+                    Image(uiImage: account.category.image)
+                        .resizable()
+                        .frame(width: 50, height: 50)
                     VStack(alignment: .leading) {
                         HStack {
                             Text("\(account.category.name)")

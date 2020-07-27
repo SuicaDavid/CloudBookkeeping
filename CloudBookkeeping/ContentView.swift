@@ -18,7 +18,7 @@ struct ContentView: View {
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image(systemName: "house")
                         Text("Home")
                     }
                 }
@@ -27,7 +27,7 @@ struct ContentView: View {
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("second")
+                        Image(systemName: "person")
                         Text("Second")
                     }
                 }

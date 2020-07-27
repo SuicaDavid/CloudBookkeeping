@@ -17,7 +17,10 @@ struct CategoryItem: View {
     
     var body: some View {
         VStack {
-            Text("\(category.image)")
+            Image(uiImage: category.image)
+                .resizable()
+                .frame(width: 25, height: 25)
+                .offset(y: 5)
             Text("\(category.name)")
         }
         .foregroundColor(getForegroundColor())
@@ -43,10 +46,10 @@ struct CategoryItem: View {
 }
 
 struct CategoryItem_Previews: PreviewProvider {
-    @State static var category = Category(name: "Food", image: "🍔")
+    @State static var category = Category(name: "Food", image: UIImage(systemName: "person")!)
     @State static var selectedCategory: Category?
     static var previews: some View {
         CategoryItem(category: CategoryItem_Previews.category, selectedCategory:
-            CategoryItem_Previews.$selectedCategory) 
+            CategoryItem_Previews.$selectedCategory)
     }
 }

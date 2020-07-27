@@ -15,7 +15,7 @@ struct Category: Identifiable, Equatable {
     
     var id: UUID = UUID()
     var name: String
-    var image: String
+    var image: UIImage
     var subcategories: [Subcategory] = [Subcategory]()
 }
 

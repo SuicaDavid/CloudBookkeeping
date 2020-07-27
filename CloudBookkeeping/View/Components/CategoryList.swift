@@ -78,7 +78,7 @@ struct CategoryList<ItemView>: View where ItemView: View {
 }
 
 struct CategoryList_Previews: PreviewProvider {
-    @State static var category = Category(name: "Food", image: "🍔")
+    @State static var category = Category(name: "Food", image: UIImage(systemName: "person")!)
     @State static var selectedCategory: Category?
     static var previews: some View {
         Group {
