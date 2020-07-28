@@ -14,7 +14,7 @@ extension Date {
         formatter.dateFormat = "MM/dd"
         return formatter
     }
-    func getCustomDateString() -> String {
-        return self.customDateFormat.string(from: self)
+    var customDateString: String {
+            return self.customDateFormat.string(from: self)
     }
 }

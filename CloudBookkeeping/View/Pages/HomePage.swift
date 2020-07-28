@@ -61,7 +61,12 @@ struct HomePage: View {
                 }
                 Text("\(self.accountData.accounts[1].description)")
                 Image("other")
-                AccountList(accounts: self.accountData.accounts)
+                AccountList(accounts: self.accountData.accounts) {
+                    print("1")
+                }
+                .sheet(isPresented: self.$showAddAccountSheet) {
+                    AddAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
+                }
                 Spacer()
             }
             .padding()

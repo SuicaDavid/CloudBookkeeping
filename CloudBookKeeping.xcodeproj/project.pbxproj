@@ -65,6 +65,8 @@
 		F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* AddAccount.swift */; };
 		F16582CB24B62420004E2A7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582CA24B62420004E2A7C /* AccountType.swift */; };
 		F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172302424C3B27E0095A955 /* SubcategoryList.swift */; };
+		F1BE230524D0D1A4002580D0 /* AmountText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE230424D0D1A4002580D0 /* AmountText.swift */; };
+		F1BE230724D0D269002580D0 /* DescriptionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE230624D0D269002580D0 /* DescriptionText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,8 @@
 		F16582C824B61C75004E2A7C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
 		F16582CA24B62420004E2A7C /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		F172302424C3B27E0095A955 /* SubcategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryList.swift; sourceTree = "<group>"; };
+		F1BE230424D0D1A4002580D0 /* AmountText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountText.swift; sourceTree = "<group>"; };
+		F1BE230624D0D269002580D0 /* DescriptionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +202,8 @@
 		F114FCD324B4808C00F3ACF5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F163D24524D0B97A0007CFEE /* AccountSetting */,
 				F16582C624B5FBEF004E2A7C /* AccountList.swift */,
-				F14537E124B90D6E0005ED0D /* CategoryList.swift */,
-				F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */,
-				F172302424C3B27E0095A955 /* SubcategoryList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -350,6 +352,18 @@
 				F145319B24CE302900A07ADE /* travel.png */,
 			);
 			path = CategoryIcon;
+			sourceTree = "<group>";
+		};
+		F163D24524D0B97A0007CFEE /* AccountSetting */ = {
+			isa = PBXGroup;
+			children = (
+				F14537E124B90D6E0005ED0D /* CategoryList.swift */,
+				F14537DA24B8F2FA0005ED0D /* CategoryItem.swift */,
+				F172302424C3B27E0095A955 /* SubcategoryList.swift */,
+				F1BE230424D0D1A4002580D0 /* AmountText.swift */,
+				F1BE230624D0D269002580D0 /* DescriptionText.swift */,
+			);
+			path = AccountSetting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1BE230524D0D1A4002580D0 /* AmountText.swift in Sources */,
 				F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */,
 				F114FCD624B4823800F3ACF5 /* Account.swift in Sources */,
 				F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */,
@@ -524,6 +539,7 @@
 				F16582CB24B62420004E2A7C /* AccountType.swift in Sources */,
 				F145317924CDEE4A00A07ADE /* URLExtension.swift in Sources */,
 				F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */,
+				F1BE230724D0D269002580D0 /* DescriptionText.swift in Sources */,
 				F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */,
 				F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */,
 				F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */,

@@ -17,7 +17,8 @@ struct AddAccount: View {
     @State private var selectedCategory: Category?
     @State private var selectedSubcategory: Subcategory?
     @State private var description: String = ""
-    @State private var createdTime = Date()
+    @State private var createdTime: Date = Date()
+    @State private var newTime: Date = Date()
     @State private var showDatePicker: Bool = false
     @State private var showSubcategoryPicker: Bool = false
     
@@ -62,13 +63,7 @@ struct AddAccount: View {
             
             Divider()
             VStack {
-                HStack {
-                    Text("Amount")
-                        .font(.largeTitle)
-                        .bold()
-                    Spacer()
-                    AmountTextField(amount: $amount, currency: self.currency!)
-                }
+                AmountText(amount: $amount, currency: self.currency!)
                 Divider()
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
@@ -89,33 +84,40 @@ struct AddAccount: View {
                 Divider()
                 
                 
-                
-                HStack {
-                    Text("\(self.createdTime.getCustomDateString())")
-                        .onTapGesture {
-                            withAnimation {
-                                self.showDatePicker.toggle()
-                            }
+            
+                DescriptionText(description: $description, date: self.$createdTime){
+                    withAnimation {
+                        self.newTime = self.createdTime
+                        self.showDatePicker.toggle()
                     }
-                    
-                    DescriptionTextField(description: $description)
                 }
                 .padding(.vertical)
                 Divider()
                 
                 if showDatePicker {
-                    DatePicker("", selection:  self.$createdTime, in: ...Date(), displayedComponents: [.hourAndMinute, .date])
-                        .labelsHidden()
+                    GeometryReader { geometry in
+                        VStack {
+                            DatePicker("", selection:  self.$newTime, in: ...Date(), displayedComponents: [.hourAndMinute, .date])
+                                .labelsHidden()
+                                .frame(width: geometry.size.width)
+                            Button(action: {
+                                self.createdTime = self.newTime
+                                self.showDatePicker.toggle()
+                            }, label: {
+                                Text("Sav Date")
+                            })
+                        }
+                    }
+                } else { // hide the Add button when editing Date
+                    Spacer()
+                    Button(action: {
+                        print("submit")
+                        self.addAccount()
+                        self.isVisible = false
+                    }, label: {
+                        Text("Add Account")
+                    })
                 }
-                
-                Spacer()
-                Button(action: {
-                    print("submit")
-                    self.addAccount()
-                    self.isVisible = false
-                }, label: {
-                    Text("Add Account")
-                })
             }
             .padding()
         }
@@ -146,42 +148,7 @@ struct AddAccount: View {
     }
 }
 
-struct AmountTextField: View {
-    @Binding var amount: Double
-    @State var currency: Currency
-    var body: some View {
-        TextField("input the amount of account",
-                  value: $amount,
-                  formatter: formatterOfAmount,
-                  onEditingChanged: { changed in
-                    print("amount changed: \(changed)")
-        },
-                  onCommit: {
-                    print("amount commit")
-        })
-            .font(.title)
-            .multilineTextAlignment(.trailing)
-    }
-    private var formatterOfAmount: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currencyAccounting
-        formatter.currencySymbol = currency.getCurrencyUnit()
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        return formatter
-    }
-}
 
-struct DescriptionTextField: View {
-    @Binding var description: String
-    var body: some View {
-        TextField("Input the description", text: self.$description, onEditingChanged: { changed in
-            print("began: \(changed)")
-        }, onCommit: {
-            print("Commit")
-        })
-    }
-}
 
 struct AddAccount_Previews: PreviewProvider {
     static var previews: some View {
