@@ -10,14 +10,14 @@ import SwiftUI
 
 struct AccountList: View {
     @State var accounts: [Account]
-    @State var onTapItemGesture: () -> Void
+    @State var onTapItemGesture: (_ account: Account) -> Void
     
     var body: some View {
         VStack {
             ForEach(accounts, id: \.self.id ) { account in
                 AccountItem(account: account)
                     .onTapGesture {
-                        self.onTapItemGesture()
+                        self.onTapItemGesture(account)
                 }
             }
         }
@@ -51,7 +51,7 @@ struct AccountItem: View {
 
 struct AccountList_Previews: PreviewProvider {
     static var previews: some View {
-        AccountList(accounts: AccountData().accounts) {
+        AccountList(accounts: AccountData().accounts) {_ in 
             print("1")
         }
     }

@@ -13,7 +13,6 @@ class AccountData: ObservableObject {
     @Published var categories: [Category] = []
     @Published var categoryIcons: [String: UIImage]?
     @Published var selectedCurrency: Currency = .GBP
-    @Published var selectedAccountType: AccountType = .expense
     
     init() {
         initCategoryIcon()
@@ -22,15 +21,21 @@ class AccountData: ObservableObject {
         
         addAccount(
             amount: 10,
+            selectedAccountType: .expense,
             categoryName: "Food",
             subcategoryName: "Delivery",
-            description: "KFC"
+            description: "KFC",
+            createdTime: Date(),
+            finalEdditTime: Date()
         )
         addAccount(
             amount: 24,
+            selectedAccountType: .expense,
             categoryName: "Drink",
             subcategoryName: "Coffee",
-            description: "Starbucks"
+            description: "Starbucks",
+            createdTime: Date(),
+            finalEdditTime: Date()
         )
     }
     
@@ -98,7 +103,13 @@ class AccountData: ObservableObject {
         }
     }
     
-    func addAccount(amount: Double, categoryName: String, subcategoryName: String?, description: String) {
+    func addAccount(amount: Double,
+                    selectedAccountType: AccountType,
+                    categoryName: String,
+                    subcategoryName: String?,
+                    description: String,
+                    createdTime: Date,
+                    finalEdditTime: Date) {
         if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
             print(categoryIndex)
             let category: Category = categories[categoryIndex]
@@ -108,13 +119,13 @@ class AccountData: ObservableObject {
             }
             let account = Account(
             amount: amount,
-            accountType: self.selectedAccountType,
+            accountType: selectedAccountType,
             currency: self.selectedCurrency,
             category: category,
             subcategory: subcategory,
             description: description,
-            createdTime: Date(),
-            finalEdditTime: Date())
+            createdTime: createdTime,
+            finalEdditTime: finalEdditTime)
             accounts.append(account)
         }
     }

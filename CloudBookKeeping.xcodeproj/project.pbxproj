@@ -62,7 +62,7 @@
 		F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14537E124B90D6E0005ED0D /* CategoryList.swift */; };
 		F152C7CF24BC7B9700600042 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F152C7CE24BC7B9700600042 /* DateExtension.swift */; };
 		F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C624B5FBEF004E2A7C /* AccountList.swift */; };
-		F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* AddAccount.swift */; };
+		F16582C924B61C75004E2A7C /* EdditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582C824B61C75004E2A7C /* EdditAccount.swift */; };
 		F16582CB24B62420004E2A7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16582CA24B62420004E2A7C /* AccountType.swift */; };
 		F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172302424C3B27E0095A955 /* SubcategoryList.swift */; };
 		F1BE230524D0D1A4002580D0 /* AmountText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BE230424D0D1A4002580D0 /* AmountText.swift */; };
@@ -149,7 +149,7 @@
 		F14537E124B90D6E0005ED0D /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F152C7CE24BC7B9700600042 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F16582C624B5FBEF004E2A7C /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
-		F16582C824B61C75004E2A7C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
+		F16582C824B61C75004E2A7C /* EdditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdditAccount.swift; sourceTree = "<group>"; };
 		F16582CA24B62420004E2A7C /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		F172302424C3B27E0095A955 /* SubcategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryList.swift; sourceTree = "<group>"; };
 		F1BE230424D0D1A4002580D0 /* AmountText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountText.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				F114FCD924B4940600F3ACF5 /* HomePage.swift */,
-				F16582C824B61C75004E2A7C /* AddAccount.swift */,
+				F16582C824B61C75004E2A7C /* EdditAccount.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -548,7 +548,7 @@
 				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
 				F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */,
 				F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */,
-				F16582C924B61C75004E2A7C /* AddAccount.swift in Sources */,
+				F16582C924B61C75004E2A7C /* EdditAccount.swift in Sources */,
 				F13C3DC024CE4A9A00A67721 /* StringExtension.swift in Sources */,
 				F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */,
 				F114FCD824B483E600F3ACF5 /* Category.swift in Sources */,

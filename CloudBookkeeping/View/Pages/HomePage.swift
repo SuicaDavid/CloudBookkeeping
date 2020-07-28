@@ -12,6 +12,8 @@ import UIKit
 struct HomePage: View {
     @State var accountData: AccountData
     @State private var showAddAccountSheet: Bool = false
+    @State private var showEdditAccountSheet: Bool = false
+    @State private var selectedAccount: Account? = nil
     private var monthlyAmount: Double {
         get {
             var totalAmount: Double = 0
@@ -57,15 +59,16 @@ struct HomePage: View {
                             .stroke(Color.orange, lineWidth: 5)
                 )
                 .sheet(isPresented: self.$showAddAccountSheet) {
-                    AddAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
+                    EdditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
                 Text("\(self.accountData.accounts[1].description)")
                 Image("other")
-                AccountList(accounts: self.accountData.accounts) {
-                    print("1")
+                AccountList(accounts: self.accountData.accounts) { account in
+                    self.selectedAccount = account
+                    self.showEdditAccountSheet.toggle()
                 }
-                .sheet(isPresented: self.$showAddAccountSheet) {
-                    AddAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
+                .sheet(isPresented: self.$showEdditAccountSheet) {
+                    EdditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, edditAccount: self.selectedAccount)
                 }
                 Spacer()
             }
