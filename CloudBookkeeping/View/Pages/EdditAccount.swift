@@ -12,6 +12,7 @@ struct EdditAccount: View {
     @Binding var accountData: AccountData
     @Binding var isVisible: Bool
     private var edditAccount: Account?
+    private var isEddit: Bool { edditAccount != nil }
     
     @State private var accountType: AccountType = .expense
     @State private var currency: Currency? = Currency.GBP
@@ -35,7 +36,7 @@ struct EdditAccount: View {
     var body: some View {
         return self.bodyView()
             .onAppear {
-                if self.edditAccount != nil {
+                if self.isEddit {
                     self.accountType = self.edditAccount!.accountType
                     self.amount = self.edditAccount!.amount
                     self.selectedCategory = self.edditAccount?.category
@@ -129,10 +130,14 @@ struct EdditAccount: View {
                         print("submit")
                         self.finalEdditTime = self.oldTime
                         //TODO: Eddit Account
-                        self.addAccount()
+                        if self.isEddit {
+                            self.eddAccount()
+                        } else {
+                            self.addAccount()
+                        }
                         self.isVisible = false
                     }, label: {
-                        Text("Add Account")
+                        self.isEddit ? Text("Eddit Account") : Text("Add Account")
                     })
                 }
             }
@@ -152,7 +157,6 @@ struct EdditAccount: View {
     }
     
     func addAccount() {
-        print(self.amount)
         if self.amount > 0, self.selectedCategory != nil {
             print("add")
             accountData.addAccount(
@@ -162,6 +166,20 @@ struct EdditAccount: View {
                 subcategoryName: self.selectedSubcategory?.name ?? nil,
                 description: self.description,
                 createdTime: self.createdTime,
+                finalEdditTime: self.finalEdditTime
+            )
+        }
+    }
+    func eddAccount() {
+        if self.amount > 0, self.selectedCategory != nil {
+            print("eddit")
+            accountData.edditAccount(
+                id: self.edditAccount!.id,
+                amount: self.amount,
+                selectedAccountType: self.accountType,
+                categoryName: self.selectedCategory!.name,
+                subcategoryName: self.selectedSubcategory?.name ?? nil,
+                description: self.description,
                 finalEdditTime: self.finalEdditTime
             )
         }

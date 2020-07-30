@@ -130,8 +130,34 @@ class AccountData: ObservableObject {
         }
     }
     
-    //    func edditAccount(oldAccount: Account) {
-    //        let account = Account(amount: oldAccount.amount, currency: oldAccount.currency, category: oldAccount.category, subcategory: oldAccount.subcategory, description: oldAccount.description, createdTime: oldAccount.createdTime, finalEdditTime: Date())
-    //        accounts.formIndex(<#T##i: &Int##Int#>, offsetBy: <#T##Int#>)
-    //    }
+    func edditAccount(id: UUID,
+                      amount: Double,
+                      selectedAccountType: AccountType,
+                      categoryName: String,
+                      subcategoryName: String?,
+                      description: String,
+                      finalEdditTime: Date) {
+        if let accountIndex = accounts.firstIndex(where: { $0.id == id }) {
+            if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
+                if let subcategoryIndex =  categories[categoryIndex].subcategories.firstIndex(where: { $0.name == subcategoryName }) {
+                    let edditedAccount = accounts[accountIndex]
+                    let newAccount = Account(
+                        id: edditedAccount.id,
+                        amount: amount,
+                        accountType: selectedAccountType,
+                        currency: self.selectedCurrency,
+                        category: categories[categoryIndex],
+                        subcategory: categories[categoryIndex].subcategories[subcategoryIndex],
+                        description: description,
+                        createdTime: edditedAccount.createdTime,
+                        finalEdditTime: finalEdditTime
+                    )
+                    accounts[accountIndex] = newAccount
+                    print(accounts[accountIndex].amount)
+                }
+            }
+        }
+//        let account = Account(amount: oldAccount.amount, currency: oldAccount.currency, category: oldAccount.category, subcategory: oldAccount.subcategory, description: oldAccount.description, createdTime: oldAccount.createdTime, finalEdditTime: Date())
+//        accounts.formIndex(<#T##i: &Int##Int#>, offsetBy: <#T##Int#>)
+    }
 }
