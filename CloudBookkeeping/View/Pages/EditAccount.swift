@@ -11,8 +11,8 @@ import SwiftUI
 struct EditAccount: View {
     @Binding var accountData: AccountData
     @Binding var isVisible: Bool
-    private var edditAccount: Account?
-    private var isEddit: Bool { edditAccount != nil }
+    private var editAccount: Account?
+    private var isEditing: Bool { editAccount != nil }
     
     @State private var accountType: AccountType = .expense
     @State private var currency: Currency? = Currency.GBP
@@ -21,31 +21,31 @@ struct EditAccount: View {
     @State private var selectedSubcategory: Subcategory?
     @State private var description: String = ""
     @State private var createdTime: Date = Date()
-    @State private var finalEdditTime: Date = Date()
+    @State private var finalEditTime: Date = Date()
     @State private var oldTime: Date = Date()
     @State private var newTime: Date = Date()
     @State private var showDatePicker: Bool = false
     @State private var showSubcategoryPicker: Bool = false
     
-    init(accountData: Binding<AccountData>, isVisible: Binding<Bool>, edditAccount: Account? = nil) {
+    init(accountData: Binding<AccountData>, isVisible: Binding<Bool>, editAccount: Account? = nil) {
         _accountData = accountData
         _isVisible = isVisible
-        self.edditAccount = edditAccount
+        self.editAccount = editAccount
     }
     
     var body: some View {
         return self.bodyView()
             .onAppear {
-                if self.isEddit {
-                    self.accountType = self.edditAccount!.accountType
-                    self.amount = self.edditAccount!.amount
-                    self.selectedCategory = self.edditAccount?.category
-                    self.selectedSubcategory = self.edditAccount?.subcategory
-                    self.description = self.edditAccount!.description
-                    self.createdTime = self.edditAccount!.createdTime
-                    self.finalEdditTime = self.edditAccount!.finalEdditTime
-                    self.oldTime = self.edditAccount!.finalEdditTime
-                    self.newTime = self.edditAccount!.finalEdditTime
+                if self.isEditing {
+                    self.accountType = self.editAccount!.accountType
+                    self.amount = self.editAccount!.amount
+                    self.selectedCategory = self.editAccount?.category
+                    self.selectedSubcategory = self.editAccount?.subcategory
+                    self.description = self.editAccount!.description
+                    self.createdTime = self.editAccount!.createdTime
+                    self.finalEditTime = self.editAccount!.finalEditTime
+                    self.oldTime = self.editAccount!.finalEditTime
+                    self.newTime = self.editAccount!.finalEditTime
                 }
                 self.currency = self.accountData.selectedCurrency
                 self.selectedCategory = self.accountData.categories[0]
@@ -103,7 +103,7 @@ struct EditAccount: View {
             
                 DescriptionText(description: $description, date: self.$oldTime){
                     withAnimation {
-                        self.newTime = self.finalEdditTime
+                        self.newTime = self.finalEditTime
                         self.showDatePicker.toggle()
                     }
                 }
@@ -128,16 +128,15 @@ struct EditAccount: View {
                     Spacer()
                     Button(action: {
                         print("submit")
-                        self.finalEdditTime = self.oldTime
-                        //TODO: Eddit Account
-                        if self.isEddit {
+                        self.finalEditTime = self.oldTime
+                        if self.isEditing {
                             self.eddAccount()
                         } else {
                             self.addAccount()
                         }
                         self.isVisible = false
                     }, label: {
-                        self.isEddit ? Text("Eddit Account") : Text("Add Account")
+                        self.isEditing ? Text("Edit Account") : Text("Add Account")
                     })
                 }
             }
@@ -166,21 +165,21 @@ struct EditAccount: View {
                 subcategoryName: self.selectedSubcategory?.name ?? nil,
                 description: self.description,
                 createdTime: self.createdTime,
-                finalEdditTime: self.finalEdditTime
+                finalEditTime: self.finalEditTime
             )
         }
     }
     func eddAccount() {
         if self.amount > 0, self.selectedCategory != nil {
             print("eddit")
-            accountData.edditAccount(
-                id: self.edditAccount!.id,
+            accountData.editAccount(
+                id: self.editAccount!.id,
                 amount: self.amount,
                 selectedAccountType: self.accountType,
                 categoryName: self.selectedCategory!.name,
                 subcategoryName: self.selectedSubcategory?.name ?? nil,
                 description: self.description,
-                finalEdditTime: self.finalEdditTime
+                finalEditTime: self.finalEditTime
             )
         }
     }

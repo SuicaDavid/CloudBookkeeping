@@ -26,7 +26,7 @@ class AccountData: ObservableObject {
             subcategoryName: "Delivery",
             description: "KFC",
             createdTime: Date(),
-            finalEdditTime: Date()
+            finalEditTime: Date()
         )
         addAccount(
             amount: 24,
@@ -35,7 +35,7 @@ class AccountData: ObservableObject {
             subcategoryName: "Coffee",
             description: "Starbucks",
             createdTime: Date(),
-            finalEdditTime: Date()
+            finalEditTime: Date()
         )
     }
     
@@ -59,7 +59,7 @@ class AccountData: ObservableObject {
         addCategory(name: "Food", imageName: "Food")
         addCategory(name: "Drink", imageName: "Drink")
         addCategory(name: "Other", imageName: "123")
-        edditCategory(name: "Other", imageName: "📃")
+        editCategory(name: "Other", imageName: "📃")
         for index in 1...50 {
             addCategory(name: "Test\(index)", imageName: "🔧")
         }
@@ -69,7 +69,7 @@ class AccountData: ObservableObject {
         addSubcategory(categoryName: "Food", subcategoryName: "Eat In")
         addSubcategory(categoryName: "Food", subcategoryName: "Delivery")
         addSubcategory(categoryName: "Food", subcategoryName: "Take")
-        edditSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
+        editSubcategory(categoryName: "Food", subcategoryName: "Take", newSubcategoryName: "Take away")
         addSubcategory(categoryName: "dring", subcategoryName: "Coffee")
     }
     
@@ -80,7 +80,7 @@ class AccountData: ObservableObject {
         }
     }
     
-    func edditCategory(name: String, imageName: String) {
+    func editCategory(name: String, imageName: String) {
         if let index = categories.firstIndex(where: { $0.name == name }) {
             let image = categoryIcons?[imageName.lowercased()] ?? categoryIcons!["other"]!
             categories[index] = Category(name: name, image: image)
@@ -95,7 +95,7 @@ class AccountData: ObservableObject {
         }
     }
     
-    func edditSubcategory(categoryName: String, subcategoryName: String, newSubcategoryName: String) {
+    func editSubcategory(categoryName: String, subcategoryName: String, newSubcategoryName: String) {
         if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
             if let subcategoryIndex = categories[categoryIndex].subcategories.firstIndex(where: { $0.name == subcategoryName }) {
                 categories[categoryIndex].subcategories[subcategoryIndex] = Subcategory(name: newSubcategoryName)
@@ -109,9 +109,9 @@ class AccountData: ObservableObject {
                     subcategoryName: String?,
                     description: String,
                     createdTime: Date,
-                    finalEdditTime: Date) {
+                    finalEditTime: Date) {
         if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
-            print(categoryIndex)
+            print("add has category \(categoryIndex)")
             let category: Category = categories[categoryIndex]
             var subcategory: Subcategory? = nil
             if let subcategoryIndex = category.subcategories.firstIndex(where: { $0.name == subcategoryName }) {
@@ -125,39 +125,47 @@ class AccountData: ObservableObject {
             subcategory: subcategory,
             description: description,
             createdTime: createdTime,
-            finalEdditTime: finalEdditTime)
+            finalEditTime: finalEditTime)
             accounts.append(account)
+            print(accounts.count)
         }
     }
     
-    func edditAccount(id: UUID,
+    func editAccount(id: UUID,
                       amount: Double,
                       selectedAccountType: AccountType,
                       categoryName: String,
                       subcategoryName: String?,
                       description: String,
-                      finalEdditTime: Date) {
+                      finalEditTime: Date) {
         if let accountIndex = accounts.firstIndex(where: { $0.id == id }) {
+            print("edit has id")
             if let categoryIndex = categories.firstIndex(where: { $0.name == categoryName }) {
-                if let subcategoryIndex =  categories[categoryIndex].subcategories.firstIndex(where: { $0.name == subcategoryName }) {
-                    let edditedAccount = accounts[accountIndex]
-                    let newAccount = Account(
-                        id: edditedAccount.id,
-                        amount: amount,
-                        accountType: selectedAccountType,
-                        currency: self.selectedCurrency,
-                        category: categories[categoryIndex],
-                        subcategory: categories[categoryIndex].subcategories[subcategoryIndex],
-                        description: description,
-                        createdTime: edditedAccount.createdTime,
-                        finalEdditTime: finalEdditTime
-                    )
-                    accounts[accountIndex] = newAccount
-                    print(accounts[accountIndex].amount)
+                print("edit has category")
+                let category: Category = categories[categoryIndex]
+                var subcategory: Subcategory? = nil
+                if let subcategoryIndex = category.subcategories.firstIndex(where: { $0.name == subcategoryName }) {
+                    print("edit has subcategory")
+                    subcategory = category.subcategories[subcategoryIndex]
+                }
+                let editedAccount = accounts[accountIndex]
+                let newAccount = Account(
+                    id: editedAccount.id,
+                    amount: amount,
+                    accountType: selectedAccountType,
+                    currency: self.selectedCurrency,
+                    category: categories[categoryIndex],
+                    subcategory: subcategory,
+                    description: description,
+                    createdTime: editedAccount.createdTime,
+                    finalEditTime: finalEditTime
+                )
+                accounts[accountIndex] = newAccount
+                print("amount: \(accounts[accountIndex].amount)")
+                for account in accounts {
+                    print(account.description)
                 }
             }
         }
-//        let account = Account(amount: oldAccount.amount, currency: oldAccount.currency, category: oldAccount.category, subcategory: oldAccount.subcategory, description: oldAccount.description, createdTime: oldAccount.createdTime, finalEdditTime: Date())
-//        accounts.formIndex(<#T##i: &Int##Int#>, offsetBy: <#T##Int#>)
     }
 }

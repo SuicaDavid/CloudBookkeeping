@@ -24,7 +24,11 @@ struct HomePage: View {
             return totalAmount
         }
     }
+    
     var body: some View {
+        self.bodyView()
+    }
+    func bodyView() -> some View {
         return GeometryReader { geometry in
             return VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
@@ -59,16 +63,16 @@ struct HomePage: View {
                             .stroke(Color.orange, lineWidth: 5)
                 )
                 .sheet(isPresented: self.$showAddAccountSheet) {
-                    EdditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
+                    EditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
-                Text("\(self.accountData.accounts[1].description)")
-                Image("other")
-                AccountList(accounts: self.accountData.accounts) { account in
+                Text("\(self.accountData.accounts[0].description) \(self.accountData.accounts[0].amount)")
+                Text("\(self.accountData.accounts[1].description) \(self.accountData.accounts[1].amount)")
+                AccountList(accounts: self.$accountData.accounts) { account in
                     self.selectedAccount = account
                     self.showEdditAccountSheet.toggle()
                 }
                 .sheet(isPresented: self.$showEdditAccountSheet) {
-                    EdditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, edditAccount: self.selectedAccount)
+                    EditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
                 }
                 Spacer()
             }
@@ -80,6 +84,7 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage(accountData: AccountData())
+        let accountDate = AccountData()
+        return HomePage(accountData: accountDate)
     }
 }

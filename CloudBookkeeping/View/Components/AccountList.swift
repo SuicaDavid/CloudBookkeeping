@@ -9,13 +9,14 @@
 import SwiftUI
 
 struct AccountList: View {
-    @State var accounts: [Account]
+    @Binding var accounts: [Account]
     @State var onTapItemGesture: (_ account: Account) -> Void
     
     var body: some View {
         VStack {
+            Text("\(accounts[0].amount)")
             ForEach(accounts, id: \.self.id ) { account in
-                AccountItem(account: account)
+                self.accountItem(account: account)
                     .onTapGesture {
                         self.onTapItemGesture(account)
                 }
@@ -23,12 +24,9 @@ struct AccountList: View {
         }
         .font(.body)
     }
-}
-
-struct AccountItem: View {
-    @State var account: Account
-    var body: some View {
-        HStack {
+    
+    func accountItem(account: Account) -> some View {
+        return HStack {
             Image(uiImage: account.category.image)
                 .resizable()
                 .frame(width: 50, height: 50)
@@ -49,9 +47,10 @@ struct AccountItem: View {
     }
 }
 
+
 struct AccountList_Previews: PreviewProvider {
     static var previews: some View {
-        AccountList(accounts: AccountData().accounts) {_ in 
+        AccountList(accounts: .constant(AccountData().accounts)) {_ in
             print("1")
         }
     }

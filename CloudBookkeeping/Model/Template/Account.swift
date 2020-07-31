@@ -17,5 +17,5 @@ struct Account {
     var subcategory: Subcategory?
     var description: String
     var createdTime: Date
-    var finalEdditTime: Date
+    var finalEditTime: Date
 }
