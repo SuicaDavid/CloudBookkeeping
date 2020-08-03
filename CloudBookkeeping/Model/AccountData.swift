@@ -168,4 +168,9 @@ class AccountData: ObservableObject {
             }
         }
     }
+    func deleteAccount(id: UUID) {
+        if let accountIndex = accounts.firstIndex(where: { $0.id == id }) {
+            accounts.remove(at: accountIndex)
+        }
+    }
 }
