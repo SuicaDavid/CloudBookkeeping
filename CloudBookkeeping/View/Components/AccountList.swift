@@ -11,18 +11,22 @@ import SwiftUI
 struct AccountList: View {
     @Binding var accounts: [Account]
     @State var onTapItemGesture: (_ account: Account) -> Void
+    @State var onDeleteItem: (_ offsets: IndexSet) -> Void
     
     var body: some View {
         VStack {
-            Text("\(accounts[0].amount)")
-            ForEach(accounts, id: \.self.id ) { account in
-                self.accountItem(account: account)
-                    .onTapGesture {
-                        self.onTapItemGesture(account)
+            List {
+                ForEach(accounts, id: \.self.id ) { account in
+                    self.accountItem(account: account)
                 }
+                .onDelete(perform: self.removeAccount)
             }
         }
         .font(.body)
+    }
+    
+    func removeAccount(offsets: IndexSet) {
+        self.onDeleteItem(offsets)
     }
     
     func accountItem(account: Account) -> some View {
@@ -44,14 +48,21 @@ struct AccountList: View {
             }
             .padding(.vertical)
         }
+        .onTapGesture {
+                self.onTapItemGesture(account)
+        }
     }
 }
 
 
 struct AccountList_Previews: PreviewProvider {
+    @State static var accounts = AccountData().accounts
     static var previews: some View {
-        AccountList(accounts: .constant(AccountData().accounts)) {_ in
+        AccountList(accounts: self.$accounts, onTapItemGesture:  {_ in
             print("1")
-        }
+            
+        }, onDeleteItem: { offsets in
+            self.accounts.remove(atOffsets: offsets)
+        })
     }
 }

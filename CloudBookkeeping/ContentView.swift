@@ -32,12 +32,19 @@ struct ContentView: View {
                     }
                 }
                 .tag(1)
+
         }
     }
 }
-
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
+    static let accountData = AccountData()
     static var previews: some View {
-        ContentView(accountData: AccountData())
+        Group {
+            ContentView(accountData: accountData)
+                .environment(\.colorScheme, .dark)
+            ContentView(accountData: accountData)
+        }
     }
 }
+#endif

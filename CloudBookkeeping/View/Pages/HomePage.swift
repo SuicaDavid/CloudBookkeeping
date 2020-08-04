@@ -65,12 +65,13 @@ struct HomePage: View {
                 .sheet(isPresented: self.$showAddAccountSheet) {
                     EditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
-                Text("\(self.accountData.accounts[0].description) \(self.accountData.accounts[0].amount)")
-                Text("\(self.accountData.accounts[1].description) \(self.accountData.accounts[1].amount)")
-                AccountList(accounts: self.$accountData.accounts) { account in
+                Text("\(self.accountData.accounts.count)")
+                AccountList(accounts: self.accountData.$accounts, onTapItemGesture:  { account in
                     self.selectedAccount = account
                     self.showEdditAccountSheet.toggle()
-                }
+                }, onDeleteItem: { offsets in
+                    self.accountData.deleteAccount(offsets: offsets)
+                })
                 .sheet(isPresented: self.$showEdditAccountSheet) {
                     EditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
                 }
