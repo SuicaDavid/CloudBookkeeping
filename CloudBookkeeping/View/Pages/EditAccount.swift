@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EditAccount: View {
-    @Binding var accountData: AccountData
+    @EnvironmentObject var accountData: AccountData
     @Binding var isVisible: Bool
     private var editAccount: Account?
     private var isEditing: Bool { editAccount != nil }
@@ -27,8 +27,7 @@ struct EditAccount: View {
     @State private var showDatePicker: Bool = false
     @State private var showSubcategoryPicker: Bool = false
     
-    init(accountData: Binding<AccountData>, isVisible: Binding<Bool>, editAccount: Account? = nil) {
-        _accountData = accountData
+    init(isVisible: Binding<Bool>, editAccount: Account? = nil) {
         _isVisible = isVisible
         self.editAccount = editAccount
     }
@@ -191,9 +190,10 @@ struct AddAccount_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ForEach(["iPhone XS Max", "iPad Pro (12.9-inch) (3rd generation)"], id: \.self) { deviceName in
-                EditAccount(accountData: .constant(AccountData()), isVisible: .constant(true))
+                EditAccount(isVisible: .constant(true))
                     .previewDevice(PreviewDevice(rawValue: deviceName))
                     .previewDisplayName(deviceName)
+                    .environmentObject(AccountData())
             }
         }
         

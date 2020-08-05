@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var accountData: AccountData
+    @EnvironmentObject var accountData: AccountData
     @State private var selection = 0
 
     var body: some View {
         TabView(selection: $selection){
-            HomePage(accountData: accountData)
+            HomePage()
                 .font(.title)
                 .tabItem {
                     VStack {
@@ -41,9 +41,11 @@ struct ContentView_Previews: PreviewProvider {
     static let accountData = AccountData()
     static var previews: some View {
         Group {
-            ContentView(accountData: accountData)
+            ContentView()
+                .environmentObject(self.accountData)
                 .environment(\.colorScheme, .dark)
-            ContentView(accountData: accountData)
+            ContentView()
+                .environmentObject(self.accountData)
         }
     }
 }

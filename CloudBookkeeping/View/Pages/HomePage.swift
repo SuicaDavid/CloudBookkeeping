@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 struct HomePage: View {
-    @State var accountData: AccountData
+    @EnvironmentObject var accountData: AccountData
     @State private var showAddAccountSheet: Bool = false
     @State private var showEdditAccountSheet: Bool = false
     @State private var selectedAccount: Account? = nil
@@ -71,9 +71,9 @@ struct HomePage: View {
                             .stroke(Color.orange, lineWidth: 5)
                 )
                 .sheet(isPresented: self.$showAddAccountSheet) {
-                    EditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
+                    EditAccount(isVisible: self.$showAddAccountSheet)
+                        .environmentObject(self.accountData)
                 }
-                Text("\(self.accountData.accounts.count)")
                 AccountList(accounts: self.$accountData.accounts, onTapItemGesture:  { account in
                     self.selectedAccount = account
                     self.showEdditAccountSheet.toggle()
@@ -81,7 +81,8 @@ struct HomePage: View {
                     self.accountData.deleteAccount(at: index)
                 })
                 .sheet(isPresented: self.$showEdditAccountSheet) {
-                    EditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
+                    EditAccount(isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
+                        .environmentObject(self.accountData)
                 }
                 Spacer()
             }
@@ -94,6 +95,7 @@ struct HomePage: View {
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
         let accountDate = AccountData()
-        return HomePage(accountData: accountDate)
+        return HomePage()
+        .environmentObject(accountDate)
     }
 }
