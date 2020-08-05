@@ -54,6 +54,7 @@ struct AccountList: View {
             }
             .padding(.vertical)
         }
+        .contentShape(Rectangle())
         .onTapGesture {
                 self.onTapItemGesture(account)
         }
