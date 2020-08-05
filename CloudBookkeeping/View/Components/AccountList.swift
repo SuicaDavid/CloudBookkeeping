@@ -17,7 +17,11 @@ struct AccountList: View {
         VStack {
             List {
                 ForEach(accounts, id: \.self.id ) { account in
-                    self.accountItem(account: account)
+                    Button(action: {
+                        self.onTapItemGesture(account)
+                    }, label: {
+                        self.accountItem(account: account)
+                    })
                 }
                 .onDelete(perform: self.removeAccount)
             }
@@ -53,10 +57,6 @@ struct AccountList: View {
                 Text(account.description)
             }
             .padding(.vertical)
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-                self.onTapItemGesture(account)
         }
     }
 }

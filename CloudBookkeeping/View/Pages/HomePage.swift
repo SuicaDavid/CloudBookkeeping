@@ -55,24 +55,23 @@ struct HomePage: View {
                 Button(action: {
                     self.showAddAccountSheet = true
                 }, label: {
-                    Spacer()
-                    Image(systemName: "plus")
-                    Text("Add New Account")
-                    Spacer()
-                })
+                    HStack {
+                        Spacer()
+                        Image(systemName: "plus")
+                        Text("Add New Account")
+                        Spacer()
+                    }
                     .font(.title)
                     .frame(maxWidth: geometry.size.width)
                     .padding()
                     .background(Color.orange)
                     .foregroundColor(Color.white)
                     .cornerRadius(50).padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 50)
-                            .stroke(Color.orange, lineWidth: 5)
-                )
-                .sheet(isPresented: self.$showAddAccountSheet) {
-                    EditAccount(isVisible: self.$showAddAccountSheet)
-                        .environmentObject(self.accountData)
+                    .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.orange, lineWidth: 5))
+                })
+                    .sheet(isPresented: self.$showAddAccountSheet) {
+                        EditAccount(isVisible: self.$showAddAccountSheet)
+                            .environmentObject(self.accountData)
                 }
                 AccountList(accounts: self.$accountData.accounts, onTapItemGesture:  { account in
                     self.selectedAccount = account
@@ -80,9 +79,9 @@ struct HomePage: View {
                 }, onDeleteItem: { index in
                     self.accountData.deleteAccount(at: index)
                 })
-                .sheet(isPresented: self.$showEdditAccountSheet) {
-                    EditAccount(isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
-                        .environmentObject(self.accountData)
+                    .sheet(isPresented: self.$showEdditAccountSheet) {
+                        EditAccount(isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
+                            .environmentObject(self.accountData)
                 }
                 Spacer()
             }
@@ -96,6 +95,6 @@ struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
         let accountDate = AccountData()
         return HomePage()
-        .environmentObject(accountDate)
+            .environmentObject(accountDate)
     }
 }
