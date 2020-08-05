@@ -37,6 +37,16 @@ class AccountData: ObservableObject {
             createdTime: Date(),
             finalEditTime: Date()
         )
+        
+        addAccount(
+            amount: 88,
+            selectedAccountType: .expense,
+            categoryName: "Food",
+            subcategoryName: "Eat In",
+            description: "Pizzahut",
+            createdTime: Date(),
+            finalEditTime: Date()
+        )
     }
     
     func initCategoryIcon() {
@@ -168,11 +178,11 @@ class AccountData: ObservableObject {
             }
         }
     }
-    func deleteAccount(offsets: IndexSet) {
+    func deleteAccount(at index: Int) {
 //        if let accountIndex = accounts.firstIndex(where: { $0.id == id }) {
 //            accounts.remove(at: accountIndex)
 //        }
-        accounts.remove(atOffsets: offsets)
+        accounts.remove(at: index)
         print(self.accounts.count)
     }
 }

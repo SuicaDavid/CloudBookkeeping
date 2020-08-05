@@ -11,7 +11,7 @@ import SwiftUI
 struct AccountList: View {
     @Binding var accounts: [Account]
     @State var onTapItemGesture: (_ account: Account) -> Void
-    @State var onDeleteItem: (_ offsets: IndexSet) -> Void
+    @State var onDeleteItem: (_ index: Int) -> Void
     
     var body: some View {
         VStack {
@@ -26,7 +26,13 @@ struct AccountList: View {
     }
     
     func removeAccount(offsets: IndexSet) {
-        self.onDeleteItem(offsets)
+        print(offsets)
+        for i in offsets {
+            print("ttt \(i)")
+            if let index = accounts.firstIndex(where: { $0.id == accounts[i].id }) {
+                self.onDeleteItem(index)
+            }
+        }
     }
     
     func accountItem(account: Account) -> some View {
@@ -61,8 +67,8 @@ struct AccountList_Previews: PreviewProvider {
         AccountList(accounts: self.$accounts, onTapItemGesture:  {_ in
             print("1")
             
-        }, onDeleteItem: { offsets in
-            self.accounts.remove(atOffsets: offsets)
+        }, onDeleteItem: { index in
+            self.accounts.remove(at: index)
         })
     }
 }

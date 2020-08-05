@@ -24,6 +24,14 @@ struct HomePage: View {
             return totalAmount
         }
     }
+    private var accounts: [Account] {
+        get {
+            return accountData.accounts
+        }
+        set {
+            accountData.accounts = newValue
+        }
+    }
     
     var body: some View {
         self.bodyView()
@@ -66,11 +74,11 @@ struct HomePage: View {
                     EditAccount(accountData: self.$accountData, isVisible: self.$showAddAccountSheet)
                 }
                 Text("\(self.accountData.accounts.count)")
-                AccountList(accounts: self.accountData.$accounts, onTapItemGesture:  { account in
+                AccountList(accounts: self.$accountData.accounts, onTapItemGesture:  { account in
                     self.selectedAccount = account
                     self.showEdditAccountSheet.toggle()
-                }, onDeleteItem: { offsets in
-                    self.accountData.deleteAccount(offsets: offsets)
+                }, onDeleteItem: { index in
+                    self.accountData.deleteAccount(at: index)
                 })
                 .sheet(isPresented: self.$showEdditAccountSheet) {
                     EditAccount(accountData: self.$accountData, isVisible: self.$showEdditAccountSheet, editAccount: self.selectedAccount)
