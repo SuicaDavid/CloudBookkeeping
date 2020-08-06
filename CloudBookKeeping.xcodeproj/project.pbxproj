@@ -13,6 +13,8 @@
 		F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCDC24B4E82400F3ACF5 /* AccountData.swift */; };
 		F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCDE24B4F46100F3ACF5 /* Currency.swift */; };
 		F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */; };
+		F128814A24DC3B260025F2BF /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F128814924DC3B260025F2BF /* SettingPage.swift */; };
+		F128814E24DC49A60025F2BF /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F128814D24DC49A60025F2BF /* UserProfile.swift */; };
 		F133084024B32DFE0080B5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133083F24B32DFE0080B5C2 /* AppDelegate.swift */; };
 		F133084224B32DFE0080B5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F133084124B32DFE0080B5C2 /* SceneDelegate.swift */; };
 		F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F133084324B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld */; };
@@ -93,6 +95,8 @@
 		F114FCDC24B4E82400F3ACF5 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
 		F114FCDE24B4F46100F3ACF5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F114FCE124B5010600F3ACF5 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		F128814924DC3B260025F2BF /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
+		F128814D24DC49A60025F2BF /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F133083C24B32DFE0080B5C2 /* CloudBookKeeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudBookKeeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F133083F24B32DFE0080B5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F133084124B32DFE0080B5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			children = (
 				F114FCD924B4940600F3ACF5 /* HomePage.swift */,
 				F16582C824B61C75004E2A7C /* EditAccount.swift */,
+				F128814924DC3B260025F2BF /* SettingPage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				F114FCD724B483E600F3ACF5 /* Category.swift */,
 				F114FCDE24B4F46100F3ACF5 /* Currency.swift */,
 				F16582CA24B62420004E2A7C /* AccountType.swift */,
+				F128814D24DC49A60025F2BF /* UserProfile.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 				F172302524C3B27E0095A955 /* SubcategoryList.swift in Sources */,
 				F114FCDD24B4E82400F3ACF5 /* AccountData.swift in Sources */,
 				F16582C724B5FBEF004E2A7C /* AccountList.swift in Sources */,
+				F128814E24DC49A60025F2BF /* UserProfile.swift in Sources */,
 				F114FCE224B5010600F3ACF5 /* CollectionExtension.swift in Sources */,
 				F152C7CF24BC7B9700600042 /* DateExtension.swift in Sources */,
 				F133084724B32DFE0080B5C2 /* ContentView.swift in Sources */,
@@ -550,6 +557,7 @@
 				F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */,
 				F16582C924B61C75004E2A7C /* EditAccount.swift in Sources */,
 				F13C3DC024CE4A9A00A67721 /* StringExtension.swift in Sources */,
+				F128814A24DC3B260025F2BF /* SettingPage.swift in Sources */,
 				F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */,
 				F114FCD824B483E600F3ACF5 /* Category.swift in Sources */,
 			);

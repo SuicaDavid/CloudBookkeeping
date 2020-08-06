@@ -9,6 +9,7 @@
 import SwiftUI
 
 class AccountData: ObservableObject {
+    @Published var userProfile: UserProfile? = nil
     @Published var accounts: Array<Account> = []
     @Published var categories: [Category] = []
     @Published var categoryIcons: [String: UIImage]?
@@ -47,6 +48,8 @@ class AccountData: ObservableObject {
             createdTime: Date(),
             finalEditTime: Date()
         )
+        
+        self.userProfile = UserProfile(username: "Suica", photo: UIImage(systemName: "person")!)
     }
     
     func initCategoryIcon() {
