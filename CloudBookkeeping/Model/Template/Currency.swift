@@ -8,11 +8,24 @@
 
 import Foundation
 
-enum Currency {
+enum Currency: CaseIterable {
     case GBP
     case USD
     case CNY
-    
+}
+extension Currency {
+    func getDescription() -> String {
+        var description = self.getCurrencyUnit() + "   "
+        switch self {
+        case .GBP:
+            description = description + "GBP(Great Britain Pound)"
+        case .USD:
+            description = description + "USD(United States Dollar)"
+        case .CNY:
+            description = description + "CNY(Chinese Yuan)"
+        }
+        return description
+    }
     func getCurrencyUnit() -> String {
         switch self {
         case .GBP:
@@ -23,5 +36,4 @@ enum Currency {
             return "¥"
         }
     }
-
 }

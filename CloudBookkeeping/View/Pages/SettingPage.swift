@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SettingPage: View {
     @EnvironmentObject var accountData: AccountData
+    @State var showSetCurrencyUnitSheet: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -21,17 +22,43 @@ struct SettingPage: View {
                         .frame(width: 80, height: 80)
                     Text("\(accountData.userProfile?.username ?? "")")
                 }
+                .onAppear {
+                    print(self.showSetCurrencyUnitSheet)
+                    print(self.accountData.selectedCurrency)
+                }
                 Spacer()
             }
             .font(.largeTitle)
             
             SettingRow(rowTitle: "Edit Profile")
-            SettingRow(rowTitle: "Currency", rowContent: self.accountData.selectedCurrency.getCurrencyUnit())
+            SettingRow(rowTitle: "Currency", rowContent: self.accountData.selectedCurrency.getCurrencyUnit()) {
+                self.showSetCurrencyUnitSheet = true
+            }
+                .actionSheet(isPresented: self.$showSetCurrencyUnitSheet) {
+                    ActionSheet(
+                        title: Text("Setting Currency"),
+                        message: Text("This setting will change the normal currency of account"),
+                        buttons: self.getCurrencyPickerButtons()
+                    )
+                }
             SettingRow(rowTitle: "Category Setting")
             SettingRow(rowTitle: "Login Off")
             Spacer()
         }
         .padding()
+    }
+    
+    private func getCurrencyPickerButtons() -> [ActionSheet.Button] {
+        var buttons: [Alert.Button] = []
+        Currency.allCases.forEach { currency in
+            let button = Alert.Button.default(Text("\(currency.getDescription())")) {
+                self.accountData.selectedCurrency = currency
+                self.showSetCurrencyUnitSheet = false
+            }
+            buttons.append(button)
+        }
+        buttons.append(Alert.Button.cancel())
+        return buttons
     }
 }
 
@@ -52,6 +79,10 @@ struct SettingRow: View {
             .padding()
             .font(.headline)
             Divider()
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.onTapRowGesture?()
         }
     }
 }
