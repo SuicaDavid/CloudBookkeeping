@@ -116,6 +116,10 @@ class AccountData: ObservableObject {
         }
     }
     
+    func setCurrency(newCurrency: Currency) {
+        self.selectedCurrency = newCurrency
+    }
+    
     func addAccount(amount: Double,
                     selectedAccountType: AccountType,
                     categoryName: String,

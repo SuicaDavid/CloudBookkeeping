@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 struct HomePage: View {
-    @EnvironmentObject var accountData: AccountData
+    @ObservedObject var accountData: AccountData
     @State private var showAddAccountSheet: Bool = false
     @State private var showEdditAccountSheet: Bool = false
     @State private var selectedAccount: Account? = nil
@@ -94,7 +94,7 @@ struct HomePage: View {
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
         let accountDate = AccountData()
-        return HomePage()
-            .environmentObject(accountDate)
+        return HomePage(accountData: accountDate)
+//            .environmentObject(accountDate)
     }
 }

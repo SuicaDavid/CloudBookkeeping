@@ -9,9 +9,16 @@
 import SwiftUI
 
 struct SettingPage: View {
-    @EnvironmentObject var accountData: AccountData
+    @ObservedObject var accountData: AccountData
+    @State var selectedCurrencyString: String = ""
     @State var showSetCurrencyUnitSheet: Bool = false
     var body: some View {
+        return bodyView()
+            .onAppear {
+                self.selectedCurrencyString = self.accountData.selectedCurrency.getCurrencyUnit()
+        }
+    }
+    func bodyView() -> some View {
         VStack(alignment: .leading) {
             HStack {
                 Spacer()
@@ -30,32 +37,37 @@ struct SettingPage: View {
             }
             .font(.largeTitle)
             
-            SettingRow(rowTitle: "Edit Profile")
-            SettingRow(rowTitle: "Currency", rowContent: self.accountData.selectedCurrency.getCurrencyUnit()) {
+            
+            SettingRow(rowTitle: "Edit Profile", rowContent: .constant(""))
+            SettingRow(rowTitle: "Currency", rowContent: self.$selectedCurrencyString) {
                 self.showSetCurrencyUnitSheet = true
             }
-                .actionSheet(isPresented: self.$showSetCurrencyUnitSheet) {
-                    ActionSheet(
-                        title: Text("Setting Currency"),
-                        message: Text("This setting will change the normal currency of account"),
-                        buttons: self.getCurrencyPickerButtons()
-                    )
+            .sheet(isPresented: self.$showSetCurrencyUnitSheet) {
+                List {
+                    ForEach(Currency.allCases, id: \.self) { currency in
+                        Button(currency.getDescription()) {
+                            self.accountData.setCurrency(newCurrency: currency)
+                            self.selectedCurrencyString = currency.getCurrencyUnit()
+                            print(self.accountData.selectedCurrency)
+                            self.showSetCurrencyUnitSheet.toggle()
+                        }
+                    }
                 }
-            SettingRow(rowTitle: "Category Setting")
-            SettingRow(rowTitle: "Login Off")
+            }
+            SettingRow(rowTitle: "Category Setting", rowContent: .constant(""))
+            SettingRow(rowTitle: "Login Off", rowContent: .constant(""))
             Spacer()
         }
         .padding()
     }
-    
+
     private func getCurrencyPickerButtons() -> [ActionSheet.Button] {
-        var buttons: [Alert.Button] = []
-        Currency.allCases.forEach { currency in
-            let button = Alert.Button.default(Text("\(currency.getDescription())")) {
-                self.accountData.selectedCurrency = currency
-                self.showSetCurrencyUnitSheet = false
+        var buttons = Currency.allCases.map { currency in
+            Alert.Button.default(Text("\(currency.getDescription())")) {
+                self.accountData.setCurrency(newCurrency: currency)
+                print(self.accountData.selectedCurrency)
+                self.showSetCurrencyUnitSheet.toggle()
             }
-            buttons.append(button)
         }
         buttons.append(Alert.Button.cancel())
         return buttons
@@ -64,17 +76,16 @@ struct SettingPage: View {
 
 struct SettingRow: View {
     @State var rowTitle: String = ""
-    @State var rowContent: String?
+    @Binding var rowContent: String
     @State var onTapRowGesture: (() -> Void)?
+
     var body: some View {
         VStack {
             Divider()
             HStack {
                 Text(self.rowTitle)
                 Spacer()
-                if self.rowContent != nil {
-                    Text(self.rowContent!)
-                }
+                Text(self.rowContent)
             }
             .padding()
             .font(.headline)
@@ -89,7 +100,6 @@ struct SettingRow: View {
 
 struct SettingPage_Previews: PreviewProvider {
     static var previews: some View {
-        SettingPage()
-        .environmentObject(AccountData())
+        SettingPage(accountData: AccountData())
     }
 }
