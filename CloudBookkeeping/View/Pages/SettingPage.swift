@@ -19,48 +19,57 @@ struct SettingPage: View {
         }
     }
     func bodyView() -> some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-                VStack {
-                    Image(uiImage: (accountData.userProfile?.photo ?? UIImage(systemName: "person"))!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 80, height: 80)
-                    Text("\(accountData.userProfile?.username ?? "")")
+        NavigationView {
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    VStack {
+                        Image(uiImage: (accountData.userProfile?.photo ?? UIImage(systemName: "person"))!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                        Text("\(accountData.userProfile?.username ?? "")")
+                    }
+                    .onAppear {
+                        print(self.showSetCurrencyUnitSheet)
+                        print(self.accountData.selectedCurrency)
+                    }
+                    Spacer()
                 }
-                .onAppear {
-                    print(self.showSetCurrencyUnitSheet)
-                    print(self.accountData.selectedCurrency)
+                .font(.largeTitle)
+                
+                
+                SettingRow(rowTitle: "Edit Profile", rowContent: .constant("")) {
+                    EmptyView()
                 }
-                Spacer()
-            }
-            .font(.largeTitle)
-            
-            
-            SettingRow(rowTitle: "Edit Profile", rowContent: .constant(""))
-            SettingRow(rowTitle: "Currency", rowContent: self.$selectedCurrencyString) {
-                self.showSetCurrencyUnitSheet = true
-            }
-            .sheet(isPresented: self.$showSetCurrencyUnitSheet) {
-                List {
-                    ForEach(Currency.allCases, id: \.self) { currency in
-                        Button(currency.getDescription()) {
-                            self.accountData.setCurrency(newCurrency: currency)
-                            self.selectedCurrencyString = currency.getCurrencyUnit()
-                            print(self.accountData.selectedCurrency)
-                            self.showSetCurrencyUnitSheet.toggle()
+                SettingCurrencyRow(rowTitle: "Currency", rowContent: self.$selectedCurrencyString) {
+                    self.showSetCurrencyUnitSheet = true
+                }
+                .sheet(isPresented: self.$showSetCurrencyUnitSheet) {
+                    List {
+                        ForEach(Currency.allCases, id: \.self) { currency in
+                            Button(currency.getDescription()) {
+                                self.accountData.setCurrency(newCurrency: currency)
+                                self.selectedCurrencyString = currency.getCurrencyUnit()
+                                print(self.accountData.selectedCurrency)
+                                self.showSetCurrencyUnitSheet.toggle()
+                            }
                         }
                     }
                 }
+                SettingRow(rowTitle: "Category Setting", rowContent: .constant("")) {
+                    EmptyView()
+                }
+                SettingRow(rowTitle: "Login Off", rowContent: .constant("")) {
+                    EmptyView()
+                }
+                Spacer()
             }
-            SettingRow(rowTitle: "Category Setting", rowContent: .constant(""))
-            SettingRow(rowTitle: "Login Off", rowContent: .constant(""))
-            Spacer()
+            .navigationBarTitle("")
+            .padding()
         }
-        .padding()
     }
-
+    
     private func getCurrencyPickerButtons() -> [ActionSheet.Button] {
         var buttons = Currency.allCases.map { currency in
             Alert.Button.default(Text("\(currency.getDescription())")) {
@@ -74,11 +83,55 @@ struct SettingPage: View {
     }
 }
 
-struct SettingRow: View {
+struct SettingRow<Destination: View>: View {
+    @State var rowTitle: String = ""
+    @Binding var rowContent: String?
+    var destinationView: (() -> Destination) = {EmptyView() as! Destination}
+    
+    init(rowTitle: String) {
+        _rowTitle = State(wrappedValue: rowTitle)
+        _rowContent = Binding(.constant(""))
+        self.destinationView = {EmptyView() as! Destination}
+    }
+    
+    init(rowTitle: String, rowContent: Binding<String?>) {
+        _rowTitle = State(wrappedValue: rowTitle)
+        _rowContent = rowContent
+        self.destinationView = {EmptyView() as! Destination}
+    }
+    
+    init(rowTitle: String, rowContent: Binding<String?>, @ViewBuilder destinationView: @escaping () -> Destination) {
+        _rowTitle = State(wrappedValue: rowTitle)
+        _rowContent = rowContent
+        self.destinationView = destinationView
+    }
+    
+    var body: some View {
+        NavigationLink(destination: self.destinationView()) {
+            VStack {
+                Divider()
+                HStack {
+                    Text(self.rowTitle)
+                    Spacer()
+                    Text(self.rowContent ?? "")
+                }
+                .padding()
+                .font(.headline)
+                Divider()
+            }
+            .foregroundColor(.black)
+        }
+        .navigationBarTitle("User")
+        .tabItem {
+            EmptyView()
+        }
+    }
+}
+
+struct SettingCurrencyRow: View {
     @State var rowTitle: String = ""
     @Binding var rowContent: String
     @State var onTapRowGesture: (() -> Void)?
-
     var body: some View {
         VStack {
             Divider()
@@ -95,6 +148,12 @@ struct SettingRow: View {
         .onTapGesture {
             self.onTapRowGesture?()
         }
+    }
+}
+
+struct TestView: View {
+    var body: some View {
+        Text("TestView")
     }
 }
 

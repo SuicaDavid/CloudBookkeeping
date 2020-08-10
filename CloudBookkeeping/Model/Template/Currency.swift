@@ -18,11 +18,11 @@ extension Currency {
         var description = self.getCurrencyUnit() + "   "
         switch self {
         case .GBP:
-            description = description + "GBP(Great Britain Pound)"
+            description = description + " GBP(Great Britain Pound)"
         case .USD:
-            description = description + "USD(United States Dollar)"
+            description = description + " USD(United States Dollar)"
         case .CNY:
-            description = description + "CNY(Chinese Yuan)"
+            description = description + " CNY(Chinese Yuan)"
         }
         return description
     }

@@ -15,7 +15,6 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection){
             HomePage(accountData: accountData)
-                .font(.title)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
@@ -24,11 +23,10 @@ struct ContentView: View {
                 }
                 .tag(0)
             SettingPage(accountData: accountData)
-                .font(.title)
                 .tabItem {
                     VStack {
                         Image(systemName: "person")
-                        Text("Second")
+                        Text("User")
                     }
                 }
                 .tag(1)
