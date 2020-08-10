@@ -83,17 +83,13 @@ struct EditAccount: View {
                 CategoryList<CategoryItem>(categories: self.accountData.categories) { category in
                     CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
                         if (self.selectedCategory?.subcategories.count)! > 0 {
-                            self.showSubcategoryPicker.toggle()
+                            self.showSubcategoryPicker = true
                         }
                     }
                 }
                 .padding()
-                .actionSheet(isPresented: $showSubcategoryPicker) {
-                    ActionSheet(
-                        title: Text("title"),
-                        message: Text("Message"),
-                        buttons: self.getSubtegoryPickerButtons()
-                    )
+                .actionSheet(isPresented: self.$showSubcategoryPicker) {
+                    self.getSubtegoryPicker()
                 }
                 
                 Divider()
@@ -143,18 +139,29 @@ struct EditAccount: View {
         }
     }
     
-    private func getSubtegoryPickerButtons() -> [ActionSheet.Button] {
-        var buttons = self.selectedCategory!.subcategories.map { subtegory in
-            Alert.Button.default(Text("\(subtegory.name)")) {
-                self.selectedSubcategory = subtegory
-                self.showSubcategoryPicker.toggle()
+    private func getSubtegoryPicker() -> ActionSheet {
+        var buttons = self.selectedCategory!.subcategories.map { subcategory in
+            return ActionSheet.Button.default(Text("\(subcategory.name)")) {
+                self.selectSubcategory(subcategory: subcategory)
             }
         }
-        buttons.append(Alert.Button.cancel())
-        return buttons
+        buttons.append(.cancel())
+        let actionSheet = ActionSheet(
+            title: Text("Subcategory"),
+            message: Text("Please select a subcategory for your account"),
+            buttons: buttons
+        )
+        return actionSheet
     }
     
-    func addAccount() {
+    private func selectSubcategory(subcategory: Subcategory) {
+        self.selectedSubcategory = subcategory
+        self.showSubcategoryPicker = false
+    }
+    
+    
+    
+    private func addAccount() {
         if self.amount > 0, self.selectedCategory != nil {
             print("add")
             accountData.addAccount(
@@ -168,7 +175,7 @@ struct EditAccount: View {
             )
         }
     }
-    func eddAccount() {
+    private func eddAccount() {
         if self.amount > 0, self.selectedCategory != nil {
             print("eddit")
             accountData.editAccount(
