@@ -18,7 +18,20 @@ struct CategoryList<ItemView>: View where ItemView: View {
     init(categories: [Category], viewFormItem: @escaping (Category) -> ItemView) {
         self.categories = categories
         self.viewFormItem = viewFormItem
+        let categoryItemSize = CategoryItemSize()
+        self.itemWidth = categoryItemSize.itemWidth
+        self.itemPadding = categoryItemSize.itemPadding
+        self.displayRow = categoryItemSize.displayRow
     }
+    
+    init(categories: [Category], itemSize: CategoryItemSize, viewFormItem: @escaping (Category) -> ItemView) {
+        self.categories = categories
+        self.viewFormItem = viewFormItem
+        self.itemWidth = itemSize.itemWidth
+        self.itemPadding = itemSize.itemPadding
+        self.displayRow = itemSize.displayRow
+    }
+    
     
     var body: some View {
         GeometryReader { geometry in

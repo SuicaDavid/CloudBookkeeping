@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F106BEA924E34B8300EDE52B /* CategorySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F106BEA824E34B8300EDE52B /* CategorySetting.swift */; };
+		F106BEAB24E34D1900EDE52B /* CategoryItemSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F106BEAA24E34D1900EDE52B /* CategoryItemSize.swift */; };
 		F114FCD624B4823800F3ACF5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD524B4823800F3ACF5 /* Account.swift */; };
 		F114FCD824B483E600F3ACF5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD724B483E600F3ACF5 /* Category.swift */; };
 		F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114FCD924B4940600F3ACF5 /* HomePage.swift */; };
@@ -89,6 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F106BEA824E34B8300EDE52B /* CategorySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySetting.swift; sourceTree = "<group>"; };
+		F106BEAA24E34D1900EDE52B /* CategoryItemSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemSize.swift; sourceTree = "<group>"; };
 		F114FCD524B4823800F3ACF5 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F114FCD724B483E600F3ACF5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F114FCD924B4940600F3ACF5 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 				F114FCD924B4940600F3ACF5 /* HomePage.swift */,
 				F16582C824B61C75004E2A7C /* EditAccount.swift */,
 				F128814924DC3B260025F2BF /* SettingPage.swift */,
+				F106BEA824E34B8300EDE52B /* CategorySetting.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				F114FCDE24B4F46100F3ACF5 /* Currency.swift */,
 				F16582CA24B62420004E2A7C /* AccountType.swift */,
 				F128814D24DC49A60025F2BF /* UserProfile.swift */,
+				F106BEAA24E34D1900EDE52B /* CategoryItemSize.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				F1BE230524D0D1A4002580D0 /* AmountText.swift in Sources */,
 				F114FCDF24B4F46100F3ACF5 /* Currency.swift in Sources */,
 				F114FCD624B4823800F3ACF5 /* Account.swift in Sources */,
+				F106BEAB24E34D1900EDE52B /* CategoryItemSize.swift in Sources */,
 				F14537E224B90D6E0005ED0D /* CategoryList.swift in Sources */,
 				F133084524B32DFE0080B5C2 /* CloudBookkeeping.xcdatamodeld in Sources */,
 				F16582CB24B62420004E2A7C /* AccountType.swift in Sources */,
@@ -557,6 +564,7 @@
 				F14537DB24B8F2FA0005ED0D /* CategoryItem.swift in Sources */,
 				F16582C924B61C75004E2A7C /* EditAccount.swift in Sources */,
 				F13C3DC024CE4A9A00A67721 /* StringExtension.swift in Sources */,
+				F106BEA924E34B8300EDE52B /* CategorySetting.swift in Sources */,
 				F128814A24DC3B260025F2BF /* SettingPage.swift in Sources */,
 				F114FCDA24B4940600F3ACF5 /* HomePage.swift in Sources */,
 				F114FCD824B483E600F3ACF5 /* Category.swift in Sources */,
