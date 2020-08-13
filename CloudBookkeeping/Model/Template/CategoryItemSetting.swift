@@ -8,9 +8,10 @@
 
 import SwiftUI
 
-class CategoryItemSize {
+struct CategoryItemSetting {
     var itemWidth: CGFloat = 50
     var itemHeight: CGFloat = 50
     var itemPadding: CGFloat = 10
     var displayRow: Int = 3
+    var isHorizontal: Bool = false
 }

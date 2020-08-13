@@ -14,22 +14,25 @@ struct CategoryList<ItemView>: View where ItemView: View {
     private var itemWidth: CGFloat = 50
     private var itemPadding: CGFloat = 10
     private var displayRow: Int = 3
+    private var isHorizontal: Bool = false
     
     init(categories: [Category], viewFormItem: @escaping (Category) -> ItemView) {
         self.categories = categories
         self.viewFormItem = viewFormItem
-        let categoryItemSize = CategoryItemSize()
-        self.itemWidth = categoryItemSize.itemWidth
-        self.itemPadding = categoryItemSize.itemPadding
-        self.displayRow = categoryItemSize.displayRow
+        let categoryItemSetting = CategoryItemSetting()
+        self.itemWidth = categoryItemSetting.itemWidth
+        self.itemPadding = categoryItemSetting.itemPadding
+        self.displayRow = categoryItemSetting.displayRow
+        self.isHorizontal = categoryItemSetting.isHorizontal
     }
     
-    init(categories: [Category], itemSize: CategoryItemSize, viewFormItem: @escaping (Category) -> ItemView) {
+    init(categories: [Category], itemSetting: CategoryItemSetting, viewFormItem: @escaping (Category) -> ItemView) {
         self.categories = categories
         self.viewFormItem = viewFormItem
-        self.itemWidth = itemSize.itemWidth
-        self.itemPadding = itemSize.itemPadding
-        self.displayRow = itemSize.displayRow
+        self.itemWidth = itemSetting.itemWidth
+        self.itemPadding = itemSetting.itemPadding
+        self.displayRow = itemSetting.displayRow
+        self.isHorizontal = itemSetting.isHorizontal
     }
     
     
@@ -46,22 +49,37 @@ struct CategoryList<ItemView>: View where ItemView: View {
         let colNumber = self.getColNumber(elementWidth: elementWidth)
         let rowNumber = count / colNumber + 1
         let calculatedPadding = self.getPadding(elementWidth: elementWidth, colNumber: colNumber)
-        return ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(0..<rowNumber, id: \.self) { row in
-                    HStack(alignment: .center, spacing: 0) {
-                        ForEach(0..<self.getDynamicColNumber(count: count, colNumber: colNumber, row: row), id: \.self) { col in
-                            Group {
-                                self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+        if isHorizontal {
+            return AnyView(
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(self.categories, id: \.self.id) { category in
+                            self.viewFormItem(category)
+                        }
+                    }
+                    .padding(.bottom)
+                }
+            )
+        } else {
+            return AnyView(
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(0..<rowNumber, id: \.self) { row in
+                            HStack(alignment: .center, spacing: 0) {
+                                ForEach(0..<self.getDynamicColNumber(count: count, colNumber: colNumber, row: row), id: \.self) { col in
+                                    Group {
+                                        self.viewFormItem(self.categories[self.getIndexFromList(row: row, col: col, colNumber: colNumber)])
+                                    }
+                                    .padding(.bottom, calculatedPadding)
+                                    .padding(.trailing, self.getLastPadding(padding: calculatedPadding, count: count, colNumber: colNumber, row: row, col: col))
+                                }
                             }
-                            .padding(.bottom, calculatedPadding)
-                            .padding(.trailing, self.getLastPadding(padding: calculatedPadding, count: count, colNumber: colNumber, row: row, col: col))
                         }
                     }
                 }
-            }
+                .frame(height: self.getElementHeight(calculatedPadding: calculatedPadding))
+            )
         }
-        .frame(height: self.getElementHeight(calculatedPadding: calculatedPadding))
     }
     func getElementHeight(calculatedPadding: CGFloat) -> CGFloat {
         return CGFloat(self.displayRow) * (self.itemWidth + calculatedPadding) - calculatedPadding

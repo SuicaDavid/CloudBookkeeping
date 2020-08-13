@@ -11,8 +11,9 @@ import SwiftUI
 struct CategorySetting: View {
     @EnvironmentObject var accountData: AccountData
     @State var selectedCategory: Category?
+    
     var body: some View {
-        CategoryList(categories: accountData.categories) { category in
+        CategoryList(categories: accountData.categories, itemSetting: CategoryItemSetting(displayRow: 1, isHorizontal: true)) { category in
             CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
                 print(self.selectedCategory?.name as Any)
             }
