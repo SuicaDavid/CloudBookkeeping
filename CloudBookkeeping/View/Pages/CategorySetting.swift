@@ -13,9 +13,23 @@ struct CategorySetting: View {
     @State var selectedCategory: Category?
     
     var body: some View {
-        CategoryList(categories: accountData.categories, itemSetting: CategoryItemSetting(displayRow: 1, isHorizontal: true)) { category in
-            CategoryItem(category: category, selectedCategory: self.$selectedCategory) {
-                print(self.selectedCategory?.name as Any)
+        ScrollView {
+            ForEach(accountData.categories, id: \.self.id) { category in
+                VStack {
+                    HStack {
+                        Text("\(category.name)")
+                        Spacer()
+                    }
+                    VStack {
+                        ForEach(category.subcategories, id: \.self.id) { subcategory in
+                            HStack {
+                                Text(subcategory.name)
+                                    .padding(.leading)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
             }
         }
     }
