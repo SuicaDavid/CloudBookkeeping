@@ -117,9 +117,9 @@ struct SettingRow<Destination: View>: View {
                 .font(.headline)
                 Divider()
             }
-            .foregroundColor(.black)
         }
         .navigationBarTitle("User")
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
@@ -154,6 +154,10 @@ struct TestView: View {
 
 struct SettingPage_Previews: PreviewProvider {
     static var previews: some View {
-        SettingPage(accountData: AccountData())
+        Group {
+            SettingPage(accountData: AccountData())
+                .environment(\.colorScheme, .dark)
+            SettingPage(accountData: AccountData())
+        }
     }
 }
