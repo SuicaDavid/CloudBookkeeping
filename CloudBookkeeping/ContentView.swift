@@ -11,26 +11,31 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var accountData: AccountData
     @State private var selection = 0
-
+    
     var body: some View {
-        TabView(selection: $selection){
-            HomePage(accountData: accountData)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
+        NavigationView {
+            TabView(selection: $selection){
+                HomePage(accountData: accountData)
+                    .navigationBarHidden(true)
+                    .navigationBarTitle(Text("Home"))
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
                 }
                 .tag(0)
-            SettingPage(accountData: accountData)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "person")
-                        Text("User")
-                    }
+                SettingPage(accountData: accountData)
+                    .navigationBarHidden(true)
+                    .navigationBarTitle(Text("User"))
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "person")
+                            Text("User")
+                        }
                 }
                 .tag(1)
-
+            }
         }
     }
 }

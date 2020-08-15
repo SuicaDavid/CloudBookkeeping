@@ -19,55 +19,53 @@ struct SettingPage: View {
         }
     }
     func bodyView() -> some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Image(uiImage: (accountData.userProfile?.photo ?? UIImage(systemName: "person"))!)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80)
-                        Text("\(accountData.userProfile?.username ?? "")")
-                    }
-                    .onAppear {
-                        print(self.showSetCurrencyUnitSheet)
-                        print(self.accountData.selectedCurrency)
-                    }
-                    Spacer()
+        VStack(alignment: .leading) {
+            HStack {
+                Spacer()
+                VStack {
+                    Image(uiImage: (accountData.userProfile?.photo ?? UIImage(systemName: "person"))!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                    Text("\(accountData.userProfile?.username ?? "")")
                 }
-                .font(.largeTitle)
-                
-                
-                SettingRow(rowTitle: "Edit Profile", rowContent: .constant("")) {
-                    EmptyView()
-                }
-                SettingCurrencyRow(rowTitle: "Currency", rowContent: self.$selectedCurrencyString) {
-                    self.showSetCurrencyUnitSheet = true
-                }
-                .sheet(isPresented: self.$showSetCurrencyUnitSheet) {
-                    List {
-                        ForEach(Currency.allCases, id: \.self) { currency in
-                            Button(currency.getDescription()) {
-                                self.accountData.setCurrency(newCurrency: currency)
-                                self.selectedCurrencyString = currency.getCurrencyUnit()
-                                print(self.accountData.selectedCurrency)
-                                self.showSetCurrencyUnitSheet.toggle()
-                            }
-                        }
-                    }
-                }
-                SettingRow(rowTitle: "Category Setting", rowContent: .constant("")) {
-                    EmptyView()
-                }
-                SettingRow(rowTitle: "Login Off", rowContent: .constant("")) {
-                    EmptyView()
+                .onAppear {
+                    print(self.showSetCurrencyUnitSheet)
+                    print(self.accountData.selectedCurrency)
                 }
                 Spacer()
             }
-            .navigationBarTitle("")
-            .padding()
+            .font(.largeTitle)
+            
+            
+            SettingRow(rowTitle: "Edit Profile", rowContent: .constant("")) {
+                EmptyView()
+            }
+            SettingCurrencyRow(rowTitle: "Currency", rowContent: self.$selectedCurrencyString) {
+                self.showSetCurrencyUnitSheet = true
+            }
+            .sheet(isPresented: self.$showSetCurrencyUnitSheet) {
+                List {
+                    ForEach(Currency.allCases, id: \.self) { currency in
+                        Button(currency.getDescription()) {
+                            self.accountData.setCurrency(newCurrency: currency)
+                            self.selectedCurrencyString = currency.getCurrencyUnit()
+                            print(self.accountData.selectedCurrency)
+                            self.showSetCurrencyUnitSheet.toggle()
+                        }
+                    }
+                }
+            }
+            SettingRow(rowTitle: "Category Setting", rowContent: .constant("")) {
+                CategorySetting()
+            }
+            SettingRow(rowTitle: "Login Off", rowContent: .constant("")) {
+                EmptyView()
+            }
+            Spacer()
         }
+        .navigationBarTitle("")
+        .padding()
     }
     
     private func getCurrencyPickerButtons() -> [ActionSheet.Button] {
@@ -122,9 +120,6 @@ struct SettingRow<Destination: View>: View {
             .foregroundColor(.black)
         }
         .navigationBarTitle("User")
-        .tabItem {
-            EmptyView()
-        }
     }
 }
 
