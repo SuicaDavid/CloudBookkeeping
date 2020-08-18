@@ -13,11 +13,14 @@ struct CategorySetting: View {
     @State var selectedCategory: Category?
     
     var body: some View {
-        ScrollView {
+        List {
             ForEach(accountData.categories, id: \.self.id) { category in
                 CategoryRow(category: category) { subcategory in
                     SubcategoryRow(subcategory: subcategory, isLast: self.checkIfLast(list: category.subcategories, item: subcategory))
                 }
+            }
+            .onDelete { indexSet in
+                self.accountData.categories.remove(atOffsets: indexSet)
             }
         }
     }
@@ -54,7 +57,6 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
                     self.subcategoryView(subcategory)
                 }
             }
-            Divider()
         }
         .padding()
     }

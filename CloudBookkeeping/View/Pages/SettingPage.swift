@@ -119,6 +119,7 @@ struct SettingRow<Destination: View>: View {
             }
         }
         .navigationBarTitle("User")
+    .navigationBarBackButtonHidden(false)
         .buttonStyle(PlainButtonStyle())
     }
 }
