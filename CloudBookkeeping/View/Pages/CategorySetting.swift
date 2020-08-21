@@ -23,6 +23,7 @@ struct CategorySetting: View {
                 self.accountData.categories.remove(atOffsets: indexSet)
             }
         }
+        .navigationBarTitle("Category Setting")
     }
     
     func checkIfLast(list: [Subcategory], item: Subcategory) -> Bool {

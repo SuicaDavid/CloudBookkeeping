@@ -117,9 +117,8 @@ struct SettingRow<Destination: View>: View {
                 .font(.headline)
                 Divider()
             }
+            .contentShape(Rectangle())
         }
-        .navigationBarTitle("User")
-    .navigationBarBackButtonHidden(false)
         .buttonStyle(PlainButtonStyle())
     }
 }
