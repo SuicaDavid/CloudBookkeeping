@@ -26,8 +26,6 @@ struct ContentView: View {
                 }
                 .tag(0)
                 SettingPage(accountData: accountData)
-                    .navigationBarHidden(true)
-                    .navigationBarTitle(Text("User"))
                     .tabItem {
                         VStack {
                             Image(systemName: "person")
