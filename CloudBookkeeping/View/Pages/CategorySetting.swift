@@ -20,7 +20,7 @@ struct CategorySetting: View {
                 }
             }
             .onDelete { indexSet in
-                print("2")
+                self.accountData.categories.remove(atOffsets: indexSet)
             }
         }
         .navigationBarTitle("Category Setting")
@@ -35,6 +35,7 @@ struct CategorySetting: View {
 struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
     @State var category: Category
     @State var height: CGFloat = 60
+    @State private var isSelected: Bool = false
     @State var subcategoryView: ((_ subcategory: Subcategory)->SubcategoryView)
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -42,7 +43,7 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
                 VStack(alignment: .center, spacing: 0) {
                     Text("\(self.category.name)")
                         .font(.title)
-                    if category.subcategories.count > 0 {
+                    if category.subcategories.count > 0 && isSelected {
                         Path { path in
                             path.move(to: CGPoint(x: 0, y: 0))
                             path.addLine(to: CGPoint(x: height, y: 0))
@@ -55,12 +56,16 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
                 }
                 Spacer()
             }
-            VStack(alignment: .center, spacing: 0) {
-                ForEach(self.category.subcategories, id: \.self.id) { subcategory in
-                    self.subcategoryView(subcategory)
-                }
-                .onDelete { indexSet in
-                    print("2")
+            .onTapGesture {
+                self.isSelected.toggle()
+            }
+            if self.isSelected {
+                VStack(alignment: .center, spacing: 0) {
+                    Section {
+                        ForEach(self.category.subcategories, id: \.self.id) { subcategory in
+                            self.subcategoryView(subcategory)
+                        }
+                    }
                 }
             }
         }
