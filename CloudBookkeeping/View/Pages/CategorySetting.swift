@@ -19,9 +19,6 @@ struct CategorySetting: View {
                     SubcategoryRow(subcategory: subcategory, isLast: self.checkIfLast(list: category.subcategories, item: subcategory))
                 }
             }
-            .onDelete { indexSet in
-                self.accountData.categories.remove(atOffsets: indexSet)
-            }
         }
         .navigationBarTitle("Category Setting")
     }
@@ -40,6 +37,7 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
             HStack {
                 VStack(alignment: .center, spacing: 0) {
                     Text("\(self.category.name)")
+                        .font(.largeTitle)
                     if category.subcategories.count > 0 {
                         Path { path in
                             path.move(to: CGPoint(x: 10, y: 0))
