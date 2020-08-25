@@ -19,8 +19,12 @@ struct CategorySetting: View {
                     SubcategoryRow(subcategory: subcategory, isLast: self.checkIfLast(list: category.subcategories, item: subcategory))
                 }
             }
+            .onDelete { indexSet in
+                print("2")
+            }
         }
         .navigationBarTitle("Category Setting")
+        .navigationBarItems(trailing: EditButton())
     }
     
     func checkIfLast(list: [Subcategory], item: Subcategory) -> Bool {
@@ -30,18 +34,18 @@ struct CategorySetting: View {
 
 struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
     @State var category: Category
-    @State var height: CGFloat = 50
+    @State var height: CGFloat = 60
     @State var subcategoryView: ((_ subcategory: Subcategory)->SubcategoryView)
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             HStack {
                 VStack(alignment: .center, spacing: 0) {
                     Text("\(self.category.name)")
-                        .font(.largeTitle)
+                        .font(.title)
                     if category.subcategories.count > 0 {
                         Path { path in
-                            path.move(to: CGPoint(x: 10, y: 0))
-                            path.addLine(to: CGPoint(x: height - 10, y: 0))
+                            path.move(to: CGPoint(x: 0, y: 0))
+                            path.addLine(to: CGPoint(x: height, y: 0))
                         }
                         .stroke(lineWidth: 1)
                         .frame(width: height, height: 1)
@@ -55,6 +59,9 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
                 ForEach(self.category.subcategories, id: \.self.id) { subcategory in
                     self.subcategoryView(subcategory)
                 }
+                .onDelete { indexSet in
+                    print("2")
+                }
             }
         }
         .padding()
@@ -64,7 +71,7 @@ struct CategoryRow<SubcategoryView>: View where SubcategoryView: View {
 struct SubcategoryRow: View {
     @State var subcategory: Subcategory
     @State var isLast: Bool = false
-    @State var height: CGFloat = 50
+    @State var height: CGFloat = 60
     @State var arrowOffset: CGFloat = 5
     
     private var halfHeight: CGFloat { self.height / 2 }
